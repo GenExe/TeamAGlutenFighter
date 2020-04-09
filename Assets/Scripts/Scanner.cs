@@ -6,10 +6,16 @@ using UnityEngine.UI;                       // add this library to use UI elemen
 
 public class Scanner : MonoBehaviour
 {
-    public int Score = 0;
     public GameObject failFX;
     public GameObject successFX;
+    public ScoreCalculator scoreCalc;
     public Text scoreText;
+
+
+    void OnEnable () {
+        EventManager.StartListening ("ScoreUpdated", RefreshScore);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -22,7 +28,7 @@ public class Scanner : MonoBehaviour
             {
                 if (hit.collider.tag == "goodFood")
                 {
-                    Score++;
+                    EventManager.TriggerEvent ("GlutenfreeHit");
                     Destroy(hit.collider.gameObject);
                     Instantiate(successFX, hit.point, Quaternion.identity);
 
@@ -30,7 +36,8 @@ public class Scanner : MonoBehaviour
 
                 if (hit.collider.tag == "badFood")
                 {
-                    Score--; // decrease of score
+                    EventManager.TriggerEvent ("GlutenHit");
+
                     Destroy(hit.collider.gameObject); // destroys object when scanned
                     Instantiate(failFX, hit.point,
                         Quaternion.identity); // instantiates the particle system at the point of hit
@@ -44,8 +51,12 @@ public class Scanner : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
             }
-
-            scoreText.text = Score.ToString();
         }
     }
+
+    void RefreshScore() {
+        scoreText.text = scoreCalc.Score.ToString();
+    }
+
+
 }

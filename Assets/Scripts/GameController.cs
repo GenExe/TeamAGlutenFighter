@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
                 running = false;
                 _foodEmitterScript.isRunning = false;
                 endScreen.SetActive(true);                              //  Activates the restart button
+                EventManager.TriggerEvent ("GameOver");
             }
         }
     }
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         Debug.Log("RestartGame() Button clicked!");
+        EventManager.TriggerEvent ("Restart");
         SceneManager.LoadScene(0);
     }
 }
