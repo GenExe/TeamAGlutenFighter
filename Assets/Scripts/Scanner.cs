@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;                       // add this library to use UI elements of Unity
+using System;
 
 
 public class Scanner : MonoBehaviour
 {
     public GameObject failFX;
     public GameObject successFX;
-    public ScoreCalculator scoreCalc;
     public Text scoreText;
 
+    private Action<EventParam> updatedScoreListener;
 
     void OnEnable () {
-        EventManager.StartListening ("ScoreUpdated", RefreshScore);
+        updatedScoreListener = new Action<EventParam>(RefreshScore);
+        EventManager.StartListening ("ScoreUpdated", updatedScoreListener);
+    }
+
+
+    void RefreshScore(EventParam e) {
+        scoreText.text = e.Score.ToString();
     }
 
 
@@ -26,22 +33,25 @@ public class Scanner : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit,
                 Mathf.Infinity))
             {
+                EventParam hitObjData = new EventParam();
+
                 if (hit.collider.tag == "goodFood")
                 {
-                    EventManager.TriggerEvent ("GlutenfreeHit");
                     Destroy(hit.collider.gameObject);
                     Instantiate(successFX, hit.point, Quaternion.identity);
-
+                    hitObjData.PointsOfHitObject = 50;
                 }
 
                 if (hit.collider.tag == "badFood")
                 {
-                    EventManager.TriggerEvent ("GlutenHit");
-
                     Destroy(hit.collider.gameObject); // destroys object when scanned
                     Instantiate(failFX, hit.point,
                         Quaternion.identity); // instantiates the particle system at the point of hit
+                    hitObjData.PointsOfHitObject = -50;
                 }
+
+                EventManager.TriggerEvent ("ObjectHit", hitObjData);
+
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
                     Color.yellow);
@@ -53,10 +63,5 @@ public class Scanner : MonoBehaviour
             }
         }
     }
-
-    void RefreshScore() {
-        scoreText.text = scoreCalc.Score.ToString();
-    }
-
 
 }

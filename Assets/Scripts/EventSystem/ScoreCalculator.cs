@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,7 +8,10 @@ public class ScoreCalculator : MonoBehaviour {
 
     private int _score = 0;
 
-    private int _streakCounter = 0;
+    private Action<EventParam> objectHitListener;
+    private Action<EventParam> restartListener;
+    private Action<EventParam> destroyListener;
+
 
     public int Score {
         get {
@@ -16,61 +20,38 @@ public class ScoreCalculator : MonoBehaviour {
     }
 
     void OnEnable () {
-        EventManager.StartListening ("GlutenfreeHit", GlutenfreeHit);
-        EventManager.StartListening ("GlutenHit", GlutenHit);
-        EventManager.StartListening ("Restart", Restart);
-        EventManager.StartListening ("Destroy", Destroy);
-        EventManager.StartListening("GameOver", GameOver);
+        objectHitListener = new Action<EventParam>(ObjectHit);
+        restartListener = new Action<EventParam>(Restart);
+        destroyListener = new Action<EventParam>(Destroy);
+        EventManager.StartListening ("ObjectHit", objectHitListener);
+        EventManager.StartListening ("Restart", restartListener);
+        EventManager.StartListening ("Destroy", destroyListener);
     }
 
     void OnDisable () {
-        EventManager.StopListening ("GlutenfreeHit", GlutenfreeHit);
-        EventManager.StopListening ("GlutenHit", GlutenHit);
-        EventManager.StopListening ("Restart", Restart);
-        EventManager.StopListening ("Destroy", Destroy);
-        EventManager.StopListening("GameOver", GameOver);
+        EventManager.StopListening ("ObjectHit", objectHitListener);
+        EventManager.StopListening ("Restart", restartListener);
+        EventManager.StopListening ("Destroy", destroyListener);
     }
 
-    void GameOver() {
-        // dunno what to do here yet
-        // high score list or something?
-    }
 
-    void Restart() {
+    void Restart(EventParam e) {
         _score = 0;
-        _streakCounter = 0;
     }
 
-    void GlutenfreeHit () {
-        Debug.Log ("GlutenfreeHit was called!");
-        // do some score calc magic here
+    void ObjectHit(EventParam e) {
+        Debug.Log ("ObjectHit was called!");
+        _score += e.PointsOfHitObject;
 
-        if(_streakCounter >= 5) {
-            _score += 100;
-        } else {
-            _score += 50;
-        }
 
-        _streakCounter += 1;
+        EventParam e2 = new EventParam();
+        e2.Score =  _score;
 
-        if(_streakCounter >= 5) {
-            //TODO: enable streak animation
-        }
-        // trigger event 
-        EventManager.TriggerEvent("ScoreUpdated");
+        EventManager.TriggerEvent("ScoreUpdated", e2);
     }
 
-    void GlutenHit () {
-        Debug.Log ("GlutenHit was called!");
-        // do some score calc magic here
 
-        _score -= 50;
-        _streakCounter = 0;
-
-        EventManager.TriggerEvent("ScoreUpdated");
-    }
-
-    void Destroy () {
+    void Destroy (EventParam e) {
         Debug.Log ("Destroy was called!");
     }
 }
