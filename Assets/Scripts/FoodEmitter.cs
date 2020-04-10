@@ -1,45 +1,82 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using Random = UnityEngine.Random;
 
 public class FoodEmitter : MonoBehaviour
 {
-    public bool isRunning;
-    public GameObject[] food;
-    public float spawnInterval;        // Spawn interval
-    public float emitterWidth;          // Half width of emitter
-    public float startDelay;
-    public float lifeTime = 5;              // time emitted goodFood is active in the scene
-    public List<Transform> spawnPoints = new List<Transform>();
+    public bool IsRunning;
+    public GameObject[] GoodFood;
+    public GameObject[] BadFood;
+    public float SpawnInterval = 1.5f;        // Spawn interval
+    public float EmitterWidth = 10;          // Half width of emitter
+    public float StartDelay = 0;
+    public float LifeTime = 5;              // time emitted goodFood is active in the scene
+    public ShoppingList ShoppingList;
+
     [HideInInspector]
-    public List<GameObject> instantiatedFoodObjects = new List<GameObject>();
-    
+    public List<GameObject> InstantiatedFoodObjects = new List<GameObject>();
+
+    private List<GameObject> FoodObjects = new List<GameObject>();
+    private int ShoppingListSize = 2;
+    private float _gametime = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
-        isRunning = true;
-        InvokeRepeating("Spawn", startDelay, spawnInterval);
+        _gametime -= StartDelay;
+
+        if (!(SpawnInterval <= 0)) _gametime /= SpawnInterval;
+
+        List<GameObject> shoppingList = ShoppingList.CreateShoppingList(ShoppingListSize);
+
+        foreach (var item in shoppingList)
+        {
+            FoodObjects.Add(item);
+            FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
+            Debug.Log(item);
+        }
+        Debug.Log("");
+        Debug.Log("");
+
+        int remainingFood = Convert.ToInt32(_gametime) - (2 * shoppingList.Count);
+
+        for (int i = 1; i <= remainingFood; i++)
+        {
+            if (i % 2 == 0)
+            {
+                FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
+            }
+            else
+            {
+                FoodObjects.Add(GoodFood[Random.Range(0, GoodFood.Length)]);
+            }
+        }
+
+        foreach (var foodObject in FoodObjects)
+        {
+            Debug.Log(foodObject);
+
+        }
+
+        IsRunning = true;
+        InvokeRepeating("Spawn", StartDelay, SpawnInterval);
     }
 
     void Spawn()
     {
-        if (!isRunning) return;
+        if (!IsRunning || !FoodObjects.Any()) return;
 
-        GameObject emittedFood;
+        var food = FoodObjects[Random.Range(0, FoodObjects.Count)];
+        FoodObjects.Remove(food);
 
-        // if spawnPoints is empty the emitterWidth will count
-        if (!spawnPoints.Any())
-        {
-            instantiatedFoodObjects.Add(emittedFood = Instantiate(food[Random.Range(0, food.Length)], new Vector3(Random.Range(-emitterWidth, emitterWidth), 0, 0) + transform.position, Quaternion.identity));
-        }
-        // if not, a random SpawnPoint is selected each time
-        else
-        {
-            instantiatedFoodObjects.Add(emittedFood = Instantiate(food[Random.Range(0, food.Length)], spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity));
-        }
+        var emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), 0, 0) + transform.position, Quaternion.identity);
+        InstantiatedFoodObjects.Add(emittedFood);
 
-        Destroy(emittedFood, lifeTime);
+        Destroy(emittedFood, LifeTime);
     }
 
 

@@ -7,9 +7,9 @@ using UnityEngine.UI;                       // add this library to use UI elemen
 public class Scanner : MonoBehaviour
 {
     public int Score = 0;
-    public GameObject failFX;
-    public GameObject successFX;
-    public Text scoreText;
+    public GameObject FailFx;
+    public GameObject SuccessFx;
+    public Text ScoreText;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +24,7 @@ public class Scanner : MonoBehaviour
                 {
                     Score++;
                     Destroy(hit.collider.gameObject);
-                    Instantiate(successFX, hit.point, Quaternion.identity);
+                    Instantiate(SuccessFx, hit.point, Quaternion.identity);
 
                 }
 
@@ -32,7 +32,7 @@ public class Scanner : MonoBehaviour
                 {
                     Score--; // decrease of score
                     Destroy(hit.collider.gameObject); // destroys object when scanned
-                    Instantiate(failFX, hit.point,
+                    Instantiate(FailFx, hit.point,
                         Quaternion.identity); // instantiates the particle system at the point of hit
                 }
 
@@ -45,7 +45,7 @@ public class Scanner : MonoBehaviour
 
             }
 
-            scoreText.text = Score.ToString();
+            ScoreText.text = Score.ToString();
         }
     }
 }
