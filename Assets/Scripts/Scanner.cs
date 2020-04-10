@@ -18,6 +18,11 @@ public class Scanner : MonoBehaviour
         EventManager.StartListening ("ScoreUpdated", updatedScoreListener);
     }
 
+    private void OnDisable()
+    {
+        EventManager.StopListening("ScoreUpdated", updatedScoreListener);
+    }
+
 
     void RefreshScore(EventParam e) {
         scoreText.text = e.Score.ToString();
@@ -34,6 +39,7 @@ public class Scanner : MonoBehaviour
                 Mathf.Infinity))
             {
                 EventParam hitObjData = new EventParam();
+                hitObjData.HitPoint = hit.point;
 
                 if (hit.collider.tag == "goodFood")
                 {
@@ -45,8 +51,7 @@ public class Scanner : MonoBehaviour
                 if (hit.collider.tag == "badFood")
                 {
                     Destroy(hit.collider.gameObject); // destroys object when scanned
-                    Instantiate(failFX, hit.point,
-                        Quaternion.identity); // instantiates the particle system at the point of hit
+                    Instantiate(failFX, hit.point, Quaternion.identity); // instantiates the particle system at the point of hit
                     hitObjData.PointsOfHitObject = -50;
                 }
 
