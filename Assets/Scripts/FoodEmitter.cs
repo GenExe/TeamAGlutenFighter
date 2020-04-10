@@ -37,29 +37,15 @@ public class FoodEmitter : MonoBehaviour
         {
             FoodObjects.Add(item);
             FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
-            Debug.Log(item);
         }
-        Debug.Log("");
-        Debug.Log("");
 
         int remainingFood = Convert.ToInt32(_gametime) - (2 * shoppingList.Count);
 
         for (int i = 1; i <= remainingFood; i++)
         {
-            if (i % 2 == 0)
-            {
-                FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
-            }
-            else
-            {
-                FoodObjects.Add(GoodFood[Random.Range(0, GoodFood.Length)]);
-            }
-        }
-
-        foreach (var foodObject in FoodObjects)
-        {
-            Debug.Log(foodObject);
-
+            FoodObjects.Add(i % 2 == 0
+                ? BadFood[Random.Range(0, BadFood.Length)]
+                : GoodFood[Random.Range(0, GoodFood.Length)]);
         }
 
         IsRunning = true;
