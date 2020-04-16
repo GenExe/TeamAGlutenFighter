@@ -24,8 +24,7 @@ namespace Assets.Scripts.EventSystem
 
         private Vector3 _multiplierOriginalScale;
         private bool _isShrinking = false;
-
-        public float _shrinkSpeed = 0.1f;
+        private float _shrinkSpeed = 0.1f;
 
         void Start()
         {
@@ -86,9 +85,11 @@ namespace Assets.Scripts.EventSystem
             {
                 _multiplierValueText.transform.localScale -= Vector3.one * _shrinkSpeed;
             }
-            else if (_multiplierValueText?.transform.localScale == _multiplierOriginalScale)
+            else
             {
                 _isShrinking = false;
+                // set original scale again, as there seems some offset after transforming scale
+                _multiplierOriginalScale = _multiplierValueText.transform.localScale;
             }
         }
     }
