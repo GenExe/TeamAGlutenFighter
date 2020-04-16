@@ -14,15 +14,19 @@ public class GameController : MonoBehaviour
     public bool running = true;
     public GameObject endScreen;
     public Text timeText;
+    public Highscore highscore; 
+ 
 
     private float _timer;
     private FoodEmitter _foodEmitterScript;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _timer = gameTime;
         _foodEmitterScript = foodEmitter.GetComponent<FoodEmitter>();
+
     }
 
     // Update is called once per frame
@@ -32,6 +36,8 @@ public class GameController : MonoBehaviour
         {
             _timer -= Time.deltaTime;
             timeText.text = Mathf.Round(_timer).ToString();              //  Displays the countdown
+
+        
 
             if (_timer <= 0f)
             {
@@ -47,7 +53,18 @@ public class GameController : MonoBehaviour
                 }
                 running = false;
                 _foodEmitterScript.isRunning = false;
-                endScreen.SetActive(true);                              //  Activates the restart button
+
+                if (highscore.newHighscore)
+                {
+                    highscore.highscoreInput.SetActive(true);
+                    highscore.inputField.Select();
+                    highscore.inputField.ActivateInputField();
+                }
+                else
+                {
+                    endScreen.SetActive(true);                              //  Activates the restart button
+                }
+
             }
         }
     }
@@ -60,4 +77,6 @@ public class GameController : MonoBehaviour
         Debug.Log("RestartGame() Button clicked!");
         SceneManager.LoadScene(0);
     }
+
+    
 }
