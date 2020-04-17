@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;                       // add this library to use UI elements of Unity
 
 
-public class Scanner : MonoBehaviour
+public class ShootingScript : MonoBehaviour
 {
     public int Score = 0;
     public GameObject FailFx;
     public GameObject SuccessFx;
     public Text ScoreText;
+    public FoodEmitter FoodEmitter;
 
     // Update is called once per frame
     void Update()
@@ -25,7 +28,19 @@ public class Scanner : MonoBehaviour
                     Score++;
                     Destroy(hit.collider.gameObject);
                     Instantiate(SuccessFx, hit.point, Quaternion.identity);
-
+                    string foodName = hit.collider.name;
+                    if (FoodEmitter.ShoppingListItems.Any(sh => sh.name + "(Clone)" == foodName))
+                    {
+                        foreach (var itemText in FoodEmitter.ItemTextGameObjects)
+                        {
+                            if (itemText.text + "(Clone)" == foodName && !itemText.GetComponent<ShoppingListTextScript>().isChecked)
+                            {
+                                itemText.fontStyle = FontStyles.Strikethrough;
+                                itemText.GetComponent<ShoppingListTextScript>().isChecked = true;
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 if (hit.collider.tag == "badFood")

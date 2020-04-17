@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class FoodEmitter : MonoBehaviour
@@ -16,12 +18,16 @@ public class FoodEmitter : MonoBehaviour
     public float StartDelay = 0;
     public float LifeTime = 5;              // time emitted goodFood is active in the scene
     public ShoppingList ShoppingList;
+    public TextMeshProUGUI[] ItemTextGameObjects;
+    
 
     [HideInInspector]
     public List<GameObject> InstantiatedFoodObjects = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> ShoppingListItems = new List<GameObject>();
 
     private List<GameObject> FoodObjects = new List<GameObject>();
-    private int ShoppingListSize = 2;
+    private int ShoppingListSize = 4;
     private float _gametime = 10f;
 
     // Start is called before the first frame update
@@ -29,17 +35,20 @@ public class FoodEmitter : MonoBehaviour
     {
         _gametime -= StartDelay;
 
-        if (!(SpawnInterval <= 0)) _gametime /= SpawnInterval;
+        if (!(SpawnInterval <= 0)) _gametime /= SpawnInterval; 
+        ShoppingListItems = ShoppingList.CreateShoppingList(ShoppingListSize);
 
-        List<GameObject> shoppingList = ShoppingList.CreateShoppingList(ShoppingListSize);
+        // maybe change fixed size later
 
-        foreach (var item in shoppingList)
+        for (int i = 0; i < ShoppingListItems.Count || i < 4; i++)
         {
-            FoodObjects.Add(item);
+            ItemTextGameObjects[i].text = ShoppingListItems[i].name;
+            // ItemTextGameObjects[i].fontStyle = FontStyles.Strikethrough;
+            FoodObjects.Add(ShoppingListItems[i]);
             FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
         }
 
-        int remainingFood = Convert.ToInt32(_gametime) - (2 * shoppingList.Count);
+        int remainingFood = Convert.ToInt32(_gametime) - (2 * ShoppingListItems.Count);
 
         for (int i = 1; i <= remainingFood; i++)
         {
