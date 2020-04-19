@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 6641560886043120442}
   - component: {fileID: 3342009409512615333}
   - component: {fileID: 5642392354078362059}
+  - component: {fileID: 1392510449415357729}
   m_Layer: 0
   m_Name: apple
   m_TagString: goodFood
@@ -139,3 +140,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 8455860553770013372, guid: 33cc34603c1184a48bc6749cabf4d141, type: 3}
+--- !u!114 &1392510449415357729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669851953650491689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6814d796f1afc7640832b0d4dccabf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 752140623668321011, guid: 42c6ff41acdd33e4aa9a3fc72ab36895, type: 3}
+  createCopy: 0

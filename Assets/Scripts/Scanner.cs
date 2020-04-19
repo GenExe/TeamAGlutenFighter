@@ -23,6 +23,7 @@ public class Scanner : MonoBehaviour
                 if (hit.collider.tag == "goodFood")
                 {
                     Score++;
+                    //hit.transform.gameObject.GetComponent<CopyObject>().createCopy = true;
                     Destroy(hit.collider.gameObject);
                     Instantiate(successFX, hit.point, Quaternion.identity);
 
@@ -47,5 +48,10 @@ public class Scanner : MonoBehaviour
 
             scoreText.text = Score.ToString();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 }

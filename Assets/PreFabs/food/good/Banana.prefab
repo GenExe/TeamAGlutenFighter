@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2457104114303685544}
   - component: {fileID: 2688003978111128057}
   - component: {fileID: 6169527023597623749}
+  - component: {fileID: 2724979063831213344}
   m_Layer: 0
   m_Name: Banana
   m_TagString: goodFood
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRunning: 1
-  speed: 0.1
+  speed: 0
 --- !u!64 &6169527023597623749
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -108,3 +109,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 3216447080179446721, guid: a463915892cbb4f3b8e30fc4b02e81f7, type: 3}
+--- !u!114 &2724979063831213344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189954180614121332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6814d796f1afc7640832b0d4dccabf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6627384772005125069, guid: 0145b6fd2d6542f458ce59c418590de3, type: 3}
+  createCopy: 0

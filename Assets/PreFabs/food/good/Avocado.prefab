@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2298978150177335747}
   - component: {fileID: 8429233721924184684}
   - component: {fileID: -2275110565980079774}
+  - component: {fileID: -8987031895984725483}
   m_Layer: 0
   m_Name: Avocado
   m_TagString: goodFood
@@ -108,3 +109,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -830171768015006411, guid: 50a4f36402745406b9b7c368e9f7bbd4, type: 3}
+--- !u!114 &-8987031895984725483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566128086515866911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6814d796f1afc7640832b0d4dccabf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2979925484468028836, guid: 9919cc092cb930b4bb43d4e5272f1c30, type: 3}
+  createCopy: 0
