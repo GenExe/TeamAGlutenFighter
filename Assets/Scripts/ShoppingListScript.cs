@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ShoppingList : MonoBehaviour
+public class ShoppingListScript : MonoBehaviour
 {
     public List<GameObject> GoodFoods;
 

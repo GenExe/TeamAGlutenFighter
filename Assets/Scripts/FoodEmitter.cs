@@ -17,7 +17,7 @@ public class FoodEmitter : MonoBehaviour
     public float EmitterWidth = 10;          // Half width of emitter
     public float StartDelay = 0;
     public float LifeTime = 5;              // time emitted goodFood is active in the scene
-    public ShoppingList ShoppingList;
+    public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
     
 
@@ -36,7 +36,7 @@ public class FoodEmitter : MonoBehaviour
         _gametime -= StartDelay;
 
         if (!(SpawnInterval <= 0)) _gametime /= SpawnInterval; 
-        ShoppingListItems = ShoppingList.CreateShoppingList(ShoppingListSize);
+        ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize);
 
         // maybe change fixed size later
 
