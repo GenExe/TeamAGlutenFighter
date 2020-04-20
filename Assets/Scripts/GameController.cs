@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     {
         _timer = GameTime;
         _foodEmitterScript = FoodEmitter.GetComponent<FoodEmitter>();
+        _foodEmitterScript.SetGameTime(GameTime);
     }
 
     // Update is called once per frame

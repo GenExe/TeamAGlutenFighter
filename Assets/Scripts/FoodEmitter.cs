@@ -19,6 +19,7 @@ public class FoodEmitter : MonoBehaviour
     public float LifeTime = 5;              // time emitted goodFood is active in the scene
     public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
+    public GameController GameController;
     
 
     [HideInInspector]
@@ -28,22 +29,21 @@ public class FoodEmitter : MonoBehaviour
 
     private List<GameObject> FoodObjects = new List<GameObject>();
     private int ShoppingListSize = 4;
-    private float _gametime = 10f;
+    private float _gametime;
 
-    // Start is called before the first frame update
     void Start()
     {
+        _gametime = GameController.GameTime;
         _gametime -= StartDelay;
 
         if (!(SpawnInterval <= 0)) _gametime /= SpawnInterval; 
-        ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize);
+        ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize, GoodFood);
 
         // maybe change fixed size later
 
         for (int i = 0; i < ShoppingListItems.Count || i < 4; i++)
         {
             ItemTextGameObjects[i].text = ShoppingListItems[i].name;
-            // ItemTextGameObjects[i].fontStyle = FontStyles.Strikethrough;
             FoodObjects.Add(ShoppingListItems[i]);
             FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
         }
@@ -74,6 +74,9 @@ public class FoodEmitter : MonoBehaviour
         Destroy(emittedFood, LifeTime);
     }
 
-
+    public void SetGameTime(float gametime)
+    {
+        _gametime = gametime;
+    }
 
 }
