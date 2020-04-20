@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1888645247244678690}
   - component: {fileID: 1888645247244678691}
   - component: {fileID: 1888645247244678692}
-  - component: {fileID: 1888645247244678688}
-  - component: {fileID: 1888645247244678687}
   m_Layer: 0
   m_Name: TestObject
   m_TagString: Untagged
@@ -94,36 +92,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1888645247244678688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888645247244678693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1205ab3bb224157499b9898ded1e9ac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPutObjcetIntoBasket: 0
-  movementSpeed: 1
-  shoppingBasketFirstTarget: {fileID: 0}
-  shoppingBasketFinalTarget: {fileID: 0}
-  prefab: {fileID: 1888645247244678693}
---- !u!114 &1888645247244678687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888645247244678693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPutObjcetIntoShelf: 0
-  movementSpeed: 1
-  shelfFirstTarget: {fileID: 0}
-  shelfFinalTarget: {fileID: 0}

@@ -8,6 +8,7 @@ TagManager:
   - badFood
   - good
   - bad
+  - '-'
   layers:
   - Default
   - TransparentFX

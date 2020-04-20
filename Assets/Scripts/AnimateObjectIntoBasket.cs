@@ -12,27 +12,36 @@ public class AnimateObjectIntoBasket : MonoBehaviour
     private bool reachedFirstTarget = false;
     private bool reachedFinalTarget = false;
 
-    private bool basketFull = false;
+    private GameObject trailEffect;
+    private bool instantiateTrail = true;
+    void Start()
+    {
+        shoppingBasketFirstTarget = GameObject.Find("/Environment/ShoppingBasket/FirstTarget"); 
+        shoppingBasketFinalTarget = GameObject.Find("/Environment/ShoppingBasket/FinalTarget");
+    }
 
     void Update()
     {
         if (isPutObjcetIntoBasket)
         {
-            if (!this.basketFull)
+            if (instantiateTrail)
             {
-                if (!reachedFinalTarget)
+                trailEffect = Instantiate(GameObject.Find("/VisualEffects/Trail"), gameObject.transform.position, Quaternion.identity);
+                trailEffect.transform.parent = gameObject.transform;
+                instantiateTrail = false;
+            }
+            if (!reachedFinalTarget)
+            {
+                if (Vector3.Distance(transform.position, shoppingBasketFirstTarget.transform.position) > 1 && reachedFirstTarget == false)
                 {
-                    if (Vector3.Distance(transform.position, shoppingBasketFirstTarget.transform.position) > 0.01f && reachedFirstTarget == false)
-                    {
-                        float step = 0.2f + (movementSpeed * Time.deltaTime);
-                        this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFirstTarget.transform.position, step);
-                    }
-                    else if (Vector3.Distance(transform.position, shoppingBasketFinalTarget.transform.position) > 0.01f && reachedFinalTarget == false)
-                    {
-                        reachedFirstTarget = true;
-                        float step = 0.2f + (movementSpeed * Time.deltaTime);
-                        this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFinalTarget.transform.position, step);
-                    }
+                    float step = 0.2f + (movementSpeed * Time.deltaTime);
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFirstTarget.transform.position, step);
+                }
+                else if (Vector3.Distance(transform.position, shoppingBasketFinalTarget.transform.position) > 1 && reachedFinalTarget == false)
+                {
+                    reachedFirstTarget = true;
+                    float step = 0.2f + (movementSpeed * Time.deltaTime);
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFinalTarget.transform.position, step);
                 }
             }
         }
