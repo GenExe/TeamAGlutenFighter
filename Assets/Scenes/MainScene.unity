@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: cd596fb90d1e54224895789a6b89df42,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9299927
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cd596fb90d1e54224895789a6b89df42,
         type: 3}
@@ -194,54 +194,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd596fb90d1e54224895789a6b89df42, type: 3}
---- !u!1 &203041074
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 203041076}
-  - component: {fileID: 203041075}
-  m_Layer: 0
-  m_Name: ShoppingList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &203041075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203041074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90bbe0dbd670591479024ad3660e01ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GoodFoods:
-  - {fileID: 7669851953650491689, guid: f93743bffb3c2f947b23c11cbf33a257, type: 3}
-  - {fileID: 566128086515866911, guid: 9fc339e276391b0458228540c1c8f90c, type: 3}
-  - {fileID: 4189954180614121332, guid: 7f887df4e85de174bb239124c2dbf628, type: 3}
-  - {fileID: 6711133010339022168, guid: 7b84f3e562052314c86c600933dab712, type: 3}
---- !u!4 &203041076
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203041074}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &234834554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: cd596fb90d1e54224895789a6b89df42,
@@ -661,7 +613,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.5, y: 1e-45, z: 0, w: 8e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -949,12 +901,12 @@ PrefabInstance:
     - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
         type: 3}
       propertyPath: GoodFood.Array.size
-      value: 4
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
         type: 3}
       propertyPath: BadFood.Array.size
-      value: 4
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
         type: 3}
@@ -1056,7 +1008,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ShoppingList
       value: 
-      objectReference: {fileID: 203041075}
+      objectReference: {fileID: 0}
     - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
         type: 3}
       propertyPath: startDelay
@@ -1135,6 +1087,180 @@ PrefabInstance:
       propertyPath: ItemTextGameObjects.Array.data[3]
       value: 
       objectReference: {fileID: 1745351409}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: ShoppingListScript
+      value: 
+      objectReference: {fileID: 2021245143}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[4]
+      value: 
+      objectReference: {fileID: 6760720805955365862, guid: 28c0665348f52432d9ceee3eb0b14cfd,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[5]
+      value: 
+      objectReference: {fileID: 1104595496981928608, guid: bbe93b892595e49ab8c024f1ea44b508,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[6]
+      value: 
+      objectReference: {fileID: 7566431471621681968, guid: 651fccd30dbfe4818b64089e355bd0a1,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[7]
+      value: 
+      objectReference: {fileID: 8407064840759576914, guid: 43a370fad523c4d7cad29a04a2c92d3d,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[8]
+      value: 
+      objectReference: {fileID: 2797474556945897228, guid: b2fce33bb0fd3426e931002d4597c3ec,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[9]
+      value: 
+      objectReference: {fileID: 93929725985082717, guid: 0c029331fdccf404186f22352e0553ed,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[10]
+      value: 
+      objectReference: {fileID: 3949766931608083142, guid: d786d37456d05444381aea81f50cff0b,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[11]
+      value: 
+      objectReference: {fileID: 3090025944800942113, guid: 60cbe591d30e94e49b7733e2e5e92335,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[12]
+      value: 
+      objectReference: {fileID: 932684353280171783, guid: 427310e6a46b6488d9f8f294216ef7f8,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[4]
+      value: 
+      objectReference: {fileID: 257242424639202601, guid: c16f705dfb42e4ad09af712fb2f3113b,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[5]
+      value: 
+      objectReference: {fileID: 5715066370972649750, guid: 8560f885cd9224fe0a702742fd877db8,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[6]
+      value: 
+      objectReference: {fileID: 256667125602350246, guid: d3b7f9252483b4f56b9764df50fee8b9,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[7]
+      value: 
+      objectReference: {fileID: 4288258066472197445, guid: 5485ff174b89e400781d2c15e5c5e904,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[8]
+      value: 
+      objectReference: {fileID: 4497702047276663801, guid: e572f2a046e7e43c9a9b4ea1ed3dd967,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[9]
+      value: 
+      objectReference: {fileID: 5832672603584011469, guid: e1d87c926323648dba4cfe9955bf1156,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[10]
+      value: 
+      objectReference: {fileID: 5362951070770030243, guid: 13c05dff525d2462ca2ac7e6689da824,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[11]
+      value: 
+      objectReference: {fileID: 1820799534707133801, guid: 79c4fe46c37a9479e9f37f033ead61d4,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[12]
+      value: 
+      objectReference: {fileID: 422637195782857641, guid: beb46a42f252b4826b8a77f7787a3f84,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[13]
+      value: 
+      objectReference: {fileID: 5448604049911393601, guid: 0a8a779580b8b4c78a0b41e4b7190d50,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[14]
+      value: 
+      objectReference: {fileID: 6937096155761242018, guid: d07913001a9a64161bc52b46020287ec,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[15]
+      value: 
+      objectReference: {fileID: 598312242053090497, guid: e143c23e710654bf1bf34583bef4998f,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[16]
+      value: 
+      objectReference: {fileID: 777066688925070983, guid: 103aa129c86f54927b1a0b6cd5574967,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[17]
+      value: 
+      objectReference: {fileID: 777066688925070983, guid: 103aa129c86f54927b1a0b6cd5574967,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GoodFood.Array.data[18]
+      value: 
+      objectReference: {fileID: 1474434763089970540, guid: ab8694d1d497641ce8842eb87cc14043,
+        type: 3}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[13]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: BadFood.Array.data[14]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: Gametime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: GameController
+      value: 
+      objectReference: {fileID: 1703090623}
+    - target: {fileID: 5088631148613215847, guid: 7577847cd5c6d494f813b84c868179b2,
+        type: 3}
+      propertyPath: LifeTime
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7577847cd5c6d494f813b84c868179b2, type: 3}
 --- !u!1 &1490152908 stripped
@@ -1351,6 +1477,24 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: -66}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2021245140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: cd596fb90d1e54224895789a6b89df42,
+    type: 3}
+  m_PrefabInstance: {fileID: 86860905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2021245143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021245140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bbe0dbd670591479024ad3660e01ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2068644291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3010722467383781551, guid: df4c87486020c534abdac8f8ef0b5c2c,
@@ -1579,7 +1723,7 @@ PrefabInstance:
     - target: {fileID: 642237790106618711, guid: c5174263cdd80d947bc98a662cbdf0cf,
         type: 3}
       propertyPath: GameTime
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 642237790106618664, guid: c5174263cdd80d947bc98a662cbdf0cf,
         type: 3}
