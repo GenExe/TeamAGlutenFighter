@@ -17,6 +17,7 @@ public class FoodEmitter : MonoBehaviour
     public float EmitterWidth = 10;          // Half width of emitter
     public float StartDelay = 0;
     public float LifeTime = 5;              // time emitted goodFood is active in the scene
+    public float FoodSpeed = 5f;
     public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
     public GameController GameController;
@@ -69,6 +70,7 @@ public class FoodEmitter : MonoBehaviour
         FoodObjects.Remove(food);
 
         var emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), 0, 0) + transform.position, Quaternion.identity);
+        emittedFood.GetComponent<AnimateObject>().Speed = FoodSpeed;
         InstantiatedFoodObjects.Add(emittedFood);
 
         Destroy(emittedFood, LifeTime);
