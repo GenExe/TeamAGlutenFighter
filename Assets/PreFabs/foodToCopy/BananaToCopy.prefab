@@ -11,13 +11,11 @@ GameObject:
   - component: {fileID: 7899993858147363294}
   - component: {fileID: 1223127734946567144}
   - component: {fileID: 4883561547821018897}
-  - component: {fileID: 4940786438665841984}
   - component: {fileID: 3765596792833287548}
-  - component: {fileID: 4903738793427798425}
   - component: {fileID: 7051658962040011964}
   m_Layer: 0
   m_Name: BananaToCopy
-  m_TagString: goodFood
+  m_TagString: good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,20 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4940786438665841984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6627384772005125069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e11234e21293047b5a6515ba5a48e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRunning: 1
-  speed: 0.1
 --- !u!64 &3765596792833287548
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -110,20 +94,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 3216447080179446721, guid: a463915892cbb4f3b8e30fc4b02e81f7, type: 3}
---- !u!114 &4903738793427798425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6627384772005125069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6814d796f1afc7640832b0d4dccabf73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  createCopy: 0
 --- !u!114 &7051658962040011964
 MonoBehaviour:
   m_ObjectHideFlags: 0

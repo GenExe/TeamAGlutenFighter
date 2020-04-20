@@ -11,13 +11,11 @@ GameObject:
   - component: {fileID: 2234220445858478007}
   - component: {fileID: 7087132095415324033}
   - component: {fileID: 3559537486697591160}
-  - component: {fileID: 6519874595770036951}
   - component: {fileID: 5687121575044407769}
-  - component: {fileID: 3298392038323927726}
   - component: {fileID: 3351126784996251814}
   m_Layer: 0
   m_Name: AvocadoToCopy
-  m_TagString: goodFood
+  m_TagString: good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,20 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6519874595770036951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979925484468028836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e11234e21293047b5a6515ba5a48e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRunning: 1
-  speed: 0.1
 --- !u!64 &5687121575044407769
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -110,20 +94,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -830171768015006411, guid: 50a4f36402745406b9b7c368e9f7bbd4, type: 3}
---- !u!114 &3298392038323927726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979925484468028836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6814d796f1afc7640832b0d4dccabf73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  createCopy: 0
 --- !u!114 &3351126784996251814
 MonoBehaviour:
   m_ObjectHideFlags: 0

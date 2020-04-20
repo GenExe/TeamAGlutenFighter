@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRunning: 1
-  speed: 0
+  speed: 0.1
 --- !u!64 &6169527023597623749
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -123,3 +123,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6627384772005125069, guid: 0145b6fd2d6542f458ce59c418590de3, type: 3}
   createCopy: 0
+  shoppingBasketFirstTarget: {fileID: 4739460095131546530, guid: c787496d7b5d8534296e64ae2de5df4d,
+    type: 3}
+  shoppingBasketFinalTarget: {fileID: 4897605865281476688, guid: 138c9845fd4e85b499e64941267af824,
+    type: 3}
+  shelfFirstTarget: {fileID: 1448022932568048094, guid: d5627a4ca42ca09428aea360a5c896e7,
+    type: 3}
+  shelfFinalTarget: {fileID: 704184672973717511, guid: 038764a730291a644841c6d101413461,
+    type: 3}

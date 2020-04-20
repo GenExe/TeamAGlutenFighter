@@ -23,18 +23,19 @@ public class Scanner : MonoBehaviour
                 if (hit.collider.tag == "goodFood")
                 {
                     Score++;
-                    //hit.transform.gameObject.GetComponent<CopyObject>().createCopy = true;
-                    Destroy(hit.collider.gameObject);
+                    //hit.collider.tag = "good";
+                    hit.transform.gameObject.GetComponent<CopyObject>().createCopy = true;  //Moves objects into basket, NullReferenceException occurs???
+                    //Destroy(hit.collider.gameObject);
                     Instantiate(successFX, hit.point, Quaternion.identity);
-
                 }
 
                 if (hit.collider.tag == "badFood")
                 {
                     Score--; // decrease of score
-                    Destroy(hit.collider.gameObject); // destroys object when scanned
-                    Instantiate(failFX, hit.point,
-                        Quaternion.identity); // instantiates the particle system at the point of hit
+                    //hit.collider.tag = "bad";
+                    hit.transform.gameObject.GetComponent<CopyObject>().createCopy = true;  //Moves objects into shelf, NullReferenceException occurs???
+                    //Destroy(hit.collider.gameObject); // destroys object when scanned
+                    Instantiate(failFX, hit.point, Quaternion.identity); // instantiates the particle system at the point of hit
                 }
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,

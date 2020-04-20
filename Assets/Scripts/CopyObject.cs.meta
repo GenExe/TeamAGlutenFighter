@@ -3,7 +3,12 @@ guid: 6814d796f1afc7640832b0d4dccabf73
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prefab: {instanceID: 0}
+  - shoppingBasketFirstTarget: {instanceID: 0}
+  - shoppingBasketFinalTarget: {instanceID: 0}
+  - shelfFirstTarget: {instanceID: 0}
+  - shelfFinalTarget: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
