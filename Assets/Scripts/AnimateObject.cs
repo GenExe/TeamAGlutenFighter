@@ -6,14 +6,14 @@ public class AnimateObject : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool IsRunning = true;
-    public float Speed = 0.1f;
+    public float Speed = 10f;
 
     // Update is called once per frame
     void Update()
     {
         if (IsRunning)
         {
-            this.transform.localPosition -= new Vector3(0, 0, Speed);
+            this.transform.localPosition -= new Vector3(0, 0, Speed) * Time.deltaTime;
         }
     }
 }
