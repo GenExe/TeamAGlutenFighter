@@ -32,12 +32,12 @@ public class AnimateObjectIntoShelf : MonoBehaviour
             }
             if (!reachedFinalTarget)
             {
-                if (Vector3.Distance(transform.position, shelfFirstTarget.transform.position) > 1 && reachedFirstTarget == false)
+                if (Vector3.Distance(transform.position, shelfFirstTarget.transform.position) > 0.8f && reachedFirstTarget == false)
                 {
                     float step = 0.2f + (movementSpeed * Time.deltaTime);
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shelfFirstTarget.transform.position, step);
                 }
-                else if (Vector3.Distance(transform.position, shelfFinalTarget.transform.position) > 1 && reachedFinalTarget == false)
+                else if (Vector3.Distance(transform.position, shelfFinalTarget.transform.position) > 0.8f && reachedFinalTarget == false)
                 {
                     reachedFirstTarget = true;
                     float step = 0.2f + (movementSpeed * Time.deltaTime);

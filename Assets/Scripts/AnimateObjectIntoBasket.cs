@@ -32,12 +32,12 @@ public class AnimateObjectIntoBasket : MonoBehaviour
             }
             if (!reachedFinalTarget)
             {
-                if (Vector3.Distance(transform.position, shoppingBasketFirstTarget.transform.position) > 1 && reachedFirstTarget == false)
+                if (Vector3.Distance(transform.position, shoppingBasketFirstTarget.transform.position) > 0.5 && reachedFirstTarget == false)
                 {
                     float step = 0.2f + (movementSpeed * Time.deltaTime);
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFirstTarget.transform.position, step);
                 }
-                else if (Vector3.Distance(transform.position, shoppingBasketFinalTarget.transform.position) > 1 && reachedFinalTarget == false)
+                else if (Vector3.Distance(transform.position, shoppingBasketFinalTarget.transform.position) > 0.5 && reachedFinalTarget == false)
                 {
                     reachedFirstTarget = true;
                     float step = 0.2f + (movementSpeed * Time.deltaTime);
