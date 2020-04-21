@@ -11,7 +11,16 @@ this struct is ALWAYS passed, even if not needed (generality)
 public struct EventParam {
     public int Score;
     public int PointsOfHitObject;
+    public ScoreClass? ScoreClass;
     public Vector3 HitPoint;
+}
+
+public enum ScoreClass
+{
+    NONE,
+    UP,
+    DOWN,
+    SHOPPINGLIST
 }
 
  public class EventManager : MonoBehaviour

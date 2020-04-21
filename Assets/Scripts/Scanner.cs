@@ -44,15 +44,13 @@ public class Scanner : MonoBehaviour
                 if (hit.collider.tag == "goodFood")
                 {
                     Destroy(hit.collider.gameObject);
-                    Instantiate(successFX, hit.point, Quaternion.identity);
-                    hitObjData.PointsOfHitObject = 50;
+                    hitObjData.ScoreClass = ScoreClass.UP;
                 }
 
                 if (hit.collider.tag == "badFood")
                 {
                     Destroy(hit.collider.gameObject); // destroys object when scanned
-                    Instantiate(failFX, hit.point, Quaternion.identity); // instantiates the particle system at the point of hit
-                    hitObjData.PointsOfHitObject = -50;
+                    hitObjData.ScoreClass = ScoreClass.DOWN;
                 }
 
                 EventManager.TriggerEvent ("ObjectHit", hitObjData);

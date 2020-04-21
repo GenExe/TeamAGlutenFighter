@@ -7,30 +7,33 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class Highscore : MonoBehaviour
 {
-    public Text highscore;
-    public ScoreCalculator scoreCalculator;
-    public GameObject highscoreInput;
-    public InputField inputField;
-    public GameController gameController;
-    public bool newHighscore = false; 
+    [SerializeField]
+    private Text _highscore = null;
+    [SerializeField]
+    private ScoreCalculator _scoreCalculator = null;
+    [SerializeField]
+    private GameController _gameController = null;
 
-    private int _highscore;
-    private String _hsName;
-    private int _currScore;
-    private bool isRuninng;
-    
+    public GameObject HighscoreInput;
+    public InputField NickInputField;
+    public bool NewHighscore = false;
+
+    private int _highscoreScore = 0;
+    private String _hsName = String.Empty;
+    private int _currScore = 0;
+    private bool isRuninng = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        newHighscore = false;
-        isRuninng = gameController.running;
+        NewHighscore = false;
+        isRuninng = _gameController.running;
 
-        _highscore = PlayerPrefs.GetInt("highscore", 0);
+        _highscoreScore = PlayerPrefs.GetInt("highscore", 0);
         _hsName = PlayerPrefs.GetString("nickname", "nobody");
 
-        highscore.text = _highscore.ToString() + " by " + _hsName;
-        highscoreInput.SetActive(false);
+        _highscore.text = _highscoreScore.ToString() + " by " + _hsName;
+        HighscoreInput.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,22 +41,19 @@ public class Highscore : MonoBehaviour
     {
         if (isRuninng)
         {
-            _currScore = scoreCalculator.Score;
+            _currScore = _scoreCalculator.Score;
 
-            highscore.text = (_currScore > _highscore) ? (_currScore.ToString() + " by YOU") : (_highscore.ToString() + " by " + _hsName);
+            _highscore.text = (_currScore > _highscoreScore) ? (_currScore.ToString() + " by YOU") : (_highscoreScore.ToString() + " by " + _hsName);
 
-            newHighscore = (_currScore > _highscore) ? true : false; 
+            NewHighscore = (_currScore > _highscoreScore) ? true : false;
         }
-        
     }
 
     public void OnEndEdit(String input)
     {
-
-        highscoreInput.SetActive(false);
-        PlayerPrefs.SetString("nickname", inputField.text);
-        PlayerPrefs.SetInt("highscore", scoreCalculator.Score);
-        gameController.endScreen.SetActive(true);
-
+        HighscoreInput.SetActive(false);
+        PlayerPrefs.SetString("nickname", NickInputField.text);
+        PlayerPrefs.SetInt("highscore", _scoreCalculator.Score);
+        _gameController.endScreen.SetActive(true);
     }
 }

@@ -37,8 +37,6 @@ public class GameController : MonoBehaviour
             _timer -= Time.deltaTime;
             timeText.text = Mathf.Round(_timer).ToString();              //  Displays the countdown
 
-        
-
             if (_timer <= 0f)
             {
                 // stop animation from every instantiated food and remove collider
@@ -54,22 +52,19 @@ public class GameController : MonoBehaviour
                 running = false;
                 _foodEmitterScript.isRunning = false;
 
-                if (highscore.newHighscore)
+                if (highscore.NewHighscore)
                 {
-                    highscore.highscoreInput.SetActive(true);
-                    highscore.inputField.Select();
-                    highscore.inputField.ActivateInputField();
+                    highscore.HighscoreInput.SetActive(true);
+                    highscore.NickInputField.Select();
+                    highscore.NickInputField.ActivateInputField();
                 }
                 else
                 {
                     endScreen.SetActive(true);                              //  Activates the restart button
                 }
-
             }
         }
     }
-
- 
 
     public void RestartGame()
     {
