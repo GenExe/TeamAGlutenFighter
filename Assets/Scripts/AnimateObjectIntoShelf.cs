@@ -43,6 +43,11 @@ public class AnimateObjectIntoShelf : MonoBehaviour
                     float step = 0.2f + (movementSpeed * Time.deltaTime);
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shelfFinalTarget.transform.position, step);
                 }
+                else
+                {
+                    reachedFinalTarget = true;
+                    Destroy(gameObject);
+                }
             }
         }
     }
