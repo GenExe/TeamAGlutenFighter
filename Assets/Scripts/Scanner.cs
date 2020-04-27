@@ -10,12 +10,44 @@ public class Scanner : MonoBehaviour
     public GameObject failFX;
     public GameObject successFX;
     public Text scoreText;
+    private GameObject laserOuterBeam;
+    private GameObject laserInnerBeam;
+
+    //public float cooldownTime = 2;
+
+    public float laserUptime;
+    private float uptimeCounter;
+    private float recoverAt;
+    private bool shooting;
+
+    private bool onCooldown;
+    private float cooldownCounter;
+    public float laserCooldown;
+
+    private void Start()
+    {
+        laserOuterBeam = GameObject.Find("/PlayerFov/Barcode Scanner/LaserOuterBeam");
+        laserInnerBeam = GameObject.Find("/PlayerFov/Barcode Scanner/LaserInnerBeam");
+        uptimeCounter = laserUptime;
+        shooting = false;
+        onCooldown = false;
+        recoverAt = 0;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) && !shooting && !onCooldown)
         {
+            shooting = true;
+        }
+
+        if (shooting)
+        {
+            laserOuterBeam.SetActive(true);
+            laserInnerBeam.SetActive(true);
+
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit,
                 Mathf.Infinity))
@@ -46,13 +78,44 @@ public class Scanner : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
             }
-
             scoreText.text = Score.ToString();
+        }
+        if (!onCooldown)
+        {
+            activateLaser();
+        }
+        else
+        {
+            cooldownLaser();
         }
     }
 
-    private void FixedUpdate()
+    void activateLaser()
     {
-        
+        if (recoverAt < uptimeCounter)
+        {
+            uptimeCounter -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            shooting = false;
+            laserOuterBeam.SetActive(false);
+            laserInnerBeam.SetActive(false);
+            uptimeCounter = laserUptime;
+            onCooldown = true;
+        }
+    }
+
+    void cooldownLaser()
+    {
+        if (recoverAt < cooldownCounter)
+        {
+            cooldownCounter -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            cooldownCounter = laserCooldown;
+            onCooldown = false;
+        }
     }
 }

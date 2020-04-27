@@ -33,13 +33,5 @@ public class Laser : MonoBehaviour
         {
             lr.SetPosition(1, transform.forward * 5000);
         }
-
-        //pan texture
-        textureOffset -= Time.deltaTime * 2f;
-        if(textureOffset < -10f)
-        {
-            textureOffset += 10f;
-        }
-        lr.sharedMaterials[1].SetTextureOffset("_MainTex", new Vector2(textureOffset, 0f));
     }
 }
