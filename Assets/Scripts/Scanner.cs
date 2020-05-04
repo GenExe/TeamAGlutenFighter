@@ -2,14 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;                       // add this library to use UI elements of Unity
+using System;
 
 
 public class Scanner : MonoBehaviour
 {
-    public int Score = 0;
     public GameObject failFX;
     public GameObject successFX;
     public Text scoreText;
+
+    private Action<EventParam> updatedScoreListener;
+
+    void OnEnable () {
+        updatedScoreListener = new Action<EventParam>(RefreshScore);
+        EventManager.StartListening ("ScoreUpdated", updatedScoreListener);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("ScoreUpdated", updatedScoreListener);
+    }
+
+
+    void RefreshScore(EventParam e) {
+        scoreText.text = e.Score.ToString();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -20,21 +38,23 @@ public class Scanner : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit,
                 Mathf.Infinity))
             {
+                EventParam hitObjData = new EventParam();
+                hitObjData.HitPoint = hit.point;
+
                 if (hit.collider.tag == "goodFood")
                 {
-                    Score++;
                     Destroy(hit.collider.gameObject);
-                    Instantiate(successFX, hit.point, Quaternion.identity);
-
+                    hitObjData.ScoreClass = ScoreClass.UP;
                 }
 
                 if (hit.collider.tag == "badFood")
                 {
-                    Score--; // decrease of score
                     Destroy(hit.collider.gameObject); // destroys object when scanned
-                    Instantiate(failFX, hit.point,
-                        Quaternion.identity); // instantiates the particle system at the point of hit
+                    hitObjData.ScoreClass = ScoreClass.DOWN;
                 }
+
+                EventManager.TriggerEvent ("ObjectHit", hitObjData);
+
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
                     Color.yellow);
@@ -44,8 +64,7 @@ public class Scanner : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
             }
-
-            scoreText.text = Score.ToString();
         }
     }
+
 }

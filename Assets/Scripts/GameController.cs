@@ -14,15 +14,19 @@ public class GameController : MonoBehaviour
     public bool running = true;
     public GameObject endScreen;
     public Text timeText;
+    public Highscore highscore; 
+ 
 
     private float _timer;
     private FoodEmitter _foodEmitterScript;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _timer = gameTime;
         _foodEmitterScript = foodEmitter.GetComponent<FoodEmitter>();
+
     }
 
     // Update is called once per frame
@@ -47,16 +51,27 @@ public class GameController : MonoBehaviour
                 }
                 running = false;
                 _foodEmitterScript.isRunning = false;
-                endScreen.SetActive(true);                              //  Activates the restart button
+
+                if (highscore.NewHighscore)
+                {
+                    highscore.HighscoreInput.SetActive(true);
+                    highscore.NickInputField.Select();
+                    highscore.NickInputField.ActivateInputField();
+                }
+                else
+                {
+                    endScreen.SetActive(true);                              //  Activates the restart button
+                }
             }
         }
     }
 
- 
-
     public void RestartGame()
     {
+        EventManager.TriggerEvent("ScoreUpdated", new EventParam());
         Debug.Log("RestartGame() Button clicked!");
         SceneManager.LoadScene(0);
     }
+
+    
 }
