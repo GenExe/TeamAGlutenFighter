@@ -14,15 +14,34 @@ public class AnimateObjectIntoShelf : MonoBehaviour
 
     private GameObject trailEffect;
     private bool instantiateTrail = true;
+
+    private static bool shelfFull = false;
+
+    private float objectGab = 2.8f;
+    private int lineSpace = 6;
+    private static int BasketcountObjInLine = 0;
+
+    private float shelfHeightCoordinate = 3.85f;
+    private int shelfHeight = 3;
+    private static int BasketcountObjInHeight = 0;
+
+    private float shelfStartingPositionX;
+    private float shelfStartingPositionY;
+    private float shelfStartingPositionZ;
+
     void Start()
     {
         shelfFirstTarget = GameObject.Find("/Environment/Shelf3/FirstTarget");
         shelfFinalTarget = GameObject.Find("/Environment/Shelf3/FinalTarget");
+
+        shelfStartingPositionX = shelfFinalTarget.transform.position.x;
+        shelfStartingPositionY = shelfFinalTarget.transform.position.y;
+        shelfStartingPositionZ = shelfFinalTarget.transform.position.z;
     }
 
     void Update()
     {
-          if (isPutObjcetIntoShelf)
+          if (isPutObjcetIntoShelf && !shelfFull)
           {
             if (instantiateTrail)
             {
@@ -46,9 +65,26 @@ public class AnimateObjectIntoShelf : MonoBehaviour
                 else
                 {
                     reachedFinalTarget = true;
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
+                    if (BasketcountObjInLine < this.lineSpace)
+                    {
+                        shelfFinalTarget.transform.position = new Vector3(shelfFinalTarget.transform.position.x + this.objectGab, shelfFinalTarget.transform.position.y, shelfFinalTarget.transform.position.z);
+                        BasketcountObjInLine++;
+                    }
+                    else if (BasketcountObjInHeight < this.shelfHeight)
+                    {
+                        BasketcountObjInLine = 0;
+                        BasketcountObjInHeight++;
+                        shelfStartingPositionY -= shelfHeightCoordinate;
+                        shelfStartingPositionX -= lineSpace * objectGab;
+                        shelfFinalTarget.transform.position = new Vector3(shelfStartingPositionX, shelfStartingPositionY, shelfStartingPositionZ);
+                    }
                 }
             }
+        }
+        if (BasketcountObjInHeight == this.shelfHeight && BasketcountObjInLine > this.lineSpace)
+        {
+            shelfFull = true;
         }
     }
 }

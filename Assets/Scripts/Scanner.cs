@@ -43,6 +43,15 @@ public class Scanner : MonoBehaviour
             shooting = true;
         }
 
+        if (!onCooldown)
+        {
+            activateLaser();
+        }
+        else
+        {
+            cooldownLaser();
+        }
+
         if (shooting)
         {
             laserOuterBeam.SetActive(true);
@@ -57,6 +66,7 @@ public class Scanner : MonoBehaviour
                     Score++;
                     hit.collider.tag = "-";
                     hit.transform.gameObject.GetComponent<AnimateObjectIntoBasket>().isPutObjcetIntoBasket = true;  //Moves objects into basket, NullReferenceException occurs???
+                    hit.transform.gameObject.GetComponent<AnimateObject>().isRunning = false;
                     //Destroy(hit.collider.gameObject);
                     Instantiate(successFX, hit.point, Quaternion.identity);
                 }
@@ -66,12 +76,12 @@ public class Scanner : MonoBehaviour
                     Score--; // decrease of score
                     hit.collider.tag = "-";
                     hit.transform.gameObject.GetComponent<AnimateObjectIntoShelf>().isPutObjcetIntoShelf = true;  //Moves objects into shelf, NullReferenceException occurs???
+                    hit.transform.gameObject.GetComponent<AnimateObject>().isRunning = false;
                     //Destroy(hit.collider.gameObject); // destroys object when scanned
                     Instantiate(failFX, hit.point, Quaternion.identity); // instantiates the particle system at the point of hit
                 }
 
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
-                    Color.yellow);
+                //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             }
             else
             {
@@ -79,14 +89,6 @@ public class Scanner : MonoBehaviour
 
             }
             scoreText.text = Score.ToString();
-        }
-        if (!onCooldown)
-        {
-            activateLaser();
-        }
-        else
-        {
-            cooldownLaser();
         }
     }
 
