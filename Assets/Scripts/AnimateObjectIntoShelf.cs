@@ -19,11 +19,11 @@ public class AnimateObjectIntoShelf : MonoBehaviour
 
     private float objectGab = 2.8f;
     private int lineSpace = 6;
-    private static int BasketcountObjInLine = 0;
+    private static int countObjInLine = 0;
 
     private float shelfHeightCoordinate = 3.85f;
     private int shelfHeight = 3;
-    private static int BasketcountObjInHeight = 0;
+    private static int countObjInHeight = 0;
 
     private float shelfStartingPositionX;
     private float shelfStartingPositionY;
@@ -66,23 +66,23 @@ public class AnimateObjectIntoShelf : MonoBehaviour
                 {
                     reachedFinalTarget = true;
                     //Destroy(gameObject);
-                    if (BasketcountObjInLine < this.lineSpace)
+                    if (countObjInLine < this.lineSpace)
                     {
                         shelfFinalTarget.transform.position = new Vector3(shelfFinalTarget.transform.position.x + this.objectGab, shelfFinalTarget.transform.position.y, shelfFinalTarget.transform.position.z);
-                        BasketcountObjInLine++;
+                        countObjInLine++;
                     }
-                    else if (BasketcountObjInHeight < this.shelfHeight)
+                    else if (countObjInHeight < this.shelfHeight)
                     {
-                        BasketcountObjInLine = 0;
-                        BasketcountObjInHeight++;
                         shelfStartingPositionY -= shelfHeightCoordinate;
-                        shelfStartingPositionX -= lineSpace * objectGab;
+                        shelfStartingPositionX -= countObjInLine * objectGab;
                         shelfFinalTarget.transform.position = new Vector3(shelfStartingPositionX, shelfStartingPositionY, shelfStartingPositionZ);
+                        countObjInLine = 0;
+                        countObjInHeight++;
                     }
                 }
             }
         }
-        if (BasketcountObjInHeight == this.shelfHeight && BasketcountObjInLine > this.lineSpace)
+        if (countObjInHeight == this.shelfHeight && countObjInLine > this.lineSpace)
         {
             shelfFull = true;
         }

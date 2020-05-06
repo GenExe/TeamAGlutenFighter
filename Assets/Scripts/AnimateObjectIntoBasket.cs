@@ -66,7 +66,7 @@ public class AnimateObjectIntoBasket : MonoBehaviour
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFinalTarget.transform.position, step);
                 } else
                 {
-                    //reachedFinalTarget = true;
+                    reachedFinalTarget = true;
                     //Destroy(gameObject);
                     if (countObjInLine < this.lineSpace)
                     {
@@ -81,15 +81,14 @@ public class AnimateObjectIntoBasket : MonoBehaviour
                     }
                     else if (countObjInHeight < this.basketHeight)
                     {
-                        countObjInRow = 0;
-                        countObjInLine = 0;
-                        countObjInHeight++;
-                        basketStartingPositionX -= lineSpace * objectGab;
+                        basketStartingPositionX -= countObjInLine * objectGab;
                         basketStartingPositionY += basketHeightCoordinate;
                         basketStartingPositionZ += rowSpace * (objectGab + objectGabRowAddition);
                         shoppingBasketFinalTarget.transform.position = new Vector3(basketStartingPositionX, basketStartingPositionY, basketStartingPositionZ);
+                        countObjInRow = 0;
+                        countObjInLine = 0;
+                        countObjInHeight++;
                     }
-                    reachedFinalTarget = true;
                 }
             }
         }
