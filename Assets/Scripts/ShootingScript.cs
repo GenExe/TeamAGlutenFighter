@@ -8,11 +8,12 @@ using UnityEngine.UI;                       // add this library to use UI elemen
 
 public class ShootingScript : MonoBehaviour
 {
-    public int Score = 0;
     public GameObject FailFx;
     public GameObject SuccessFx;
-    public Text ScoreText;
     public FoodEmitter FoodEmitter;
+    public Text ActualScoreText;
+
+    private EventParam _eventParam = new EventParam();
 
     // Update is called once per frame
     void Update()
@@ -23,14 +24,19 @@ public class ShootingScript : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit,
                 Mathf.Infinity))
             {
+
                 if (hit.collider.tag == "goodFood")
                 {
-                    Score++;
                     Destroy(hit.collider.gameObject);
                     Instantiate(SuccessFx, hit.point, Quaternion.identity);
                     string foodName = hit.collider.name;
                     if (FoodEmitter.ShoppingListItems.Any(sh => sh.name + "(Clone)" == foodName))
                     {
+                        // increase of score with shopping list bonus
+                        _eventParam.ScoreClass = ScoreClass.SHOPPINGLIST;    
+                        EventManager.TriggerEvent("ObjectHit", _eventParam);
+                        ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
+
                         foreach (var itemText in FoodEmitter.ItemTextGameObjects)
                         {
                             if (itemText.text + "(Clone)" == foodName && !itemText.GetComponent<ShoppingListTextScript>().isChecked)
@@ -41,14 +47,26 @@ public class ShootingScript : MonoBehaviour
                             }
                         }
                     }
+                    else
+                    {
+                        // increase of score
+                        _eventParam.ScoreClass = ScoreClass.UP;                 
+                        EventManager.TriggerEvent("ObjectHit", _eventParam);
+                        ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
+                    }
                 }
 
                 if (hit.collider.tag == "badFood")
                 {
-                    Score--; // decrease of score
-                    Destroy(hit.collider.gameObject); // destroys object when scanned
-                    Instantiate(FailFx, hit.point,
-                        Quaternion.identity); // instantiates the particle system at the point of hit
+                    // decrease of score
+                    _eventParam.ScoreClass = ScoreClass.DOWN;
+                    EventManager.TriggerEvent("ObjectHit", _eventParam);
+                    ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
+
+                    // destroys object when scanned
+                    Destroy(hit.collider.gameObject);
+                    // instantiates the particle system at the point of hit
+                    Instantiate(FailFx, hit.point, Quaternion.identity); 
                 }
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
@@ -60,7 +78,7 @@ public class ShootingScript : MonoBehaviour
 
             }
 
-            ScoreText.text = Score.ToString();
+            
         }
     }
 }

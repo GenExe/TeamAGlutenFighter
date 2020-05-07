@@ -27,7 +27,7 @@ public class Highscore : MonoBehaviour
     void Start()
     {
         NewHighscore = false;
-        isRuninng = _gameController.running;
+        isRuninng = _gameController.Running;
 
         _highscoreScore = PlayerPrefs.GetInt("highscore", 0);
         _hsName = PlayerPrefs.GetString("nickname", "nobody");
@@ -54,6 +54,6 @@ public class Highscore : MonoBehaviour
         HighscoreInput.SetActive(false);
         PlayerPrefs.SetString("nickname", NickInputField.text);
         PlayerPrefs.SetInt("highscore", _scoreCalculator.Score);
-        _gameController.endScreen.SetActive(true);
+        _gameController.EndScreen.SetActive(true);
     }
 }
