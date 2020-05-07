@@ -536,7 +536,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.04296875, y: 0.12890625, z: 0.03515625, w: -0.0390625}
+  m_BoundingSphereOverride: {x: 8.46e-43, y: -7.193686e-13, z: 8.46e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2416,6 +2416,23 @@ PrefabInstance:
       propertyPath: scoreCalc
       value: 
       objectReference: {fileID: 385882942}
+    - target: {fileID: 3010722467565431342, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: failFX
+      value: 
+      objectReference: {fileID: 7161106394579080250, guid: 4c11bf2f8b4fa334191ef1c1099c306d,
+        type: 3}
+    - target: {fileID: 3010722467565431342, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: successFX
+      value: 
+      objectReference: {fileID: 8605682775127915786, guid: e64081a187fddc941abf915eb74e0da1,
+        type: 3}
+    - target: {fileID: 3010722467565431342, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 3010722466698593756}
     - target: {fileID: 3010722466823127473, guid: df4c87486020c534abdac8f8ef0b5c2c,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -2544,3 +2561,15 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: a6cc70737df034a5dbd2b808fe0a2fb8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df4c87486020c534abdac8f8ef0b5c2c, type: 3}
+--- !u!114 &3010722466698593756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3010722466698593755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
