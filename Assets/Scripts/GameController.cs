@@ -9,13 +9,12 @@ using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject foodEmitter;
-    public float gameTime = 20;
-    public bool running = true;
-    public GameObject endScreen;
-    public Text timeText;
+    public GameObject FoodEmitter;
+    public float GameTime = 20;
+    public bool Running = true;
+    public GameObject EndScreen;
+    public Text TimeText;
     public Highscore highscore; 
- 
 
     private float _timer;
     private FoodEmitter _foodEmitterScript;
@@ -24,34 +23,33 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _timer = gameTime;
-        _foodEmitterScript = foodEmitter.GetComponent<FoodEmitter>();
-
+        _timer = GameTime;
+        _foodEmitterScript = FoodEmitter.GetComponent<FoodEmitter>();
+        _foodEmitterScript.SetGameTime(GameTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (running)
+        if (Running)
         {
             _timer -= Time.deltaTime;
-            timeText.text = Mathf.Round(_timer).ToString();              //  Displays the countdown
+            TimeText.text = Mathf.Round(_timer).ToString();              //  Displays the countdown
 
             if (_timer <= 0f)
             {
-                // stop animation from every instantiated food and remove collider
-                foreach (var food in _foodEmitterScript.instantiatedFoodObjects)
+                // stop animation from every instantiated goodFood and remove collider
+                foreach (var food in _foodEmitterScript.InstantiatedFoodObjects)
                 {
                     if (food != null)
                     {
                         AnimateObject animateScript = food.GetComponent<AnimateObject>();
-                        animateScript.isRunning = false;
+                        animateScript.IsRunning = false;
                         food.GetComponent<MeshCollider>().enabled = false;
                     }
                 }
-                running = false;
-                _foodEmitterScript.isRunning = false;
-
+                Running = false;
+                _foodEmitterScript.IsRunning = false;
                 if (highscore.NewHighscore)
                 {
                     highscore.HighscoreInput.SetActive(true);
@@ -60,8 +58,8 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    endScreen.SetActive(true);                              //  Activates the restart button
                 }
+                    endScreen.SetActive(true);                              //  Activates the restart button
             }
         }
     }
