@@ -58,8 +58,9 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
+                    EndScreen.SetActive(true);  //  Activates the restart button
                 }
-                    EndScreen.SetActive(true);                              //  Activates the restart button
+                                              
             }
         }
     }

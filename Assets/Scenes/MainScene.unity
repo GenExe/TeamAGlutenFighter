@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5277e15a4b7754e8014b0a19fc3f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MultiplierStep: 5
   _positiveHitBaseValue: 50
   _negativeHitBaseValue: 50
   _shoppingListBonus: 25
