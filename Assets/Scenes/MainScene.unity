@@ -799,7 +799,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 13, z: 5.3e-44, w: 89.055115}
+  m_BoundingSphereOverride: {x: 6, y: 6.0000005, z: -6.666667, w: 6}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3038,6 +3038,11 @@ PrefabInstance:
       propertyPath: EndScreen
       value: 
       objectReference: {fileID: 1214045048}
+    - target: {fileID: 642237790106618711, guid: c5174263cdd80d947bc98a662cbdf0cf,
+        type: 3}
+      propertyPath: Highscore
+      value: 
+      objectReference: {fileID: 468597583}
     - target: {fileID: 642237790106618664, guid: c5174263cdd80d947bc98a662cbdf0cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3128,36 +3133,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 4b1edd7142e9de44e9bd59a32d8540db,
         type: 3}
-    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
-        type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3010722467374701193, guid: df4c87486020c534abdac8f8ef0b5c2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3212,6 +3187,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3010722465485119137, guid: df4c87486020c534abdac8f8ef0b5c2c,
         type: 3}

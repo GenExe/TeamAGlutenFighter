@@ -14,16 +14,16 @@ public class GameController : MonoBehaviour
     public bool Running = true;
     public GameObject EndScreen;
     public Text TimeText;
-    public Highscore highscore; 
+    public Highscore Highscore;
 
-    private float _timer;
+    public float Timer;
     private FoodEmitter _foodEmitterScript;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _timer = GameTime;
+        Timer = GameTime;
         _foodEmitterScript = FoodEmitter.GetComponent<FoodEmitter>();
         _foodEmitterScript.SetGameTime(GameTime);
     }
@@ -33,10 +33,10 @@ public class GameController : MonoBehaviour
     {
         if (Running)
         {
-            _timer -= Time.deltaTime;
-            TimeText.text = Mathf.Round(_timer).ToString();              //  Displays the countdown
+            Timer -= Time.deltaTime;
+            TimeText.text = Mathf.Round(Timer).ToString();              //  Displays the countdown
 
-            if (_timer <= 0f)
+            if (Timer <= 0f)
             {
                 // stop animation from every instantiated goodFood and remove collider
                 foreach (var food in _foodEmitterScript.InstantiatedFoodObjects)
@@ -48,13 +48,15 @@ public class GameController : MonoBehaviour
                         food.GetComponent<MeshCollider>().enabled = false;
                     }
                 }
+
                 Running = false;
                 _foodEmitterScript.IsRunning = false;
-                if (highscore.NewHighscore)
+
+                if (Highscore.NewHighscore)
                 {
-                    highscore.HighscoreInput.SetActive(true);
-                    highscore.NickInputField.Select();
-                    highscore.NickInputField.ActivateInputField();
+                    Highscore.HighscoreInput.SetActive(true);
+                    Highscore.NickInputField.Select();
+                    Highscore.NickInputField.ActivateInputField();
                 }
                 else
                 {

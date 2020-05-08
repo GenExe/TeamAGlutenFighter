@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -14,10 +15,12 @@ public class FoodEmitter : MonoBehaviour
     public GameObject[] GoodFood;
     public GameObject[] BadFood;
     public float SpawnInterval = 1.5f;        // Spawn interval
-    public float EmitterWidth = 10;          // Half width of emitter
-    public float StartDelay = 0;
-    public float LifeTime = 5;              // time emitted goodFood is active in the scene
-    public float FoodSpeed = 5f;
+    public float EmitterWidth = 10f;          // Half width of emitter
+    public float StartDelay = 0f;
+    public float LifeTime = 5f;              // time emitted goodFood is active in the scene
+    public float FoodSpeedStart = 5f;
+    public int FoodSpeedAccelerationMultiplier = 2;
+
     public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
     public GameController GameController;
@@ -28,16 +31,22 @@ public class FoodEmitter : MonoBehaviour
     [HideInInspector]
     public List<GameObject> ShoppingListItems = new List<GameObject>();
 
-    private List<GameObject> FoodObjects = new List<GameObject>();
+    private List<GameObject> _foodObjects = new List<GameObject>();
     private int ShoppingListSize = 4;
-    private float _gametime;
+    private float _gameTime;
+    private float _foodSpeed;
+    private float[] _foodAccelerationSteps = new float[2];
 
     void Start()
     {
-        _gametime = GameController.GameTime;
-        _gametime -= StartDelay;
+        _gameTime = GameController.GameTime;
+        _gameTime -= StartDelay;
 
-        if (!(SpawnInterval <= 0)) _gametime /= SpawnInterval; 
+        _foodSpeed = FoodSpeedStart;
+        _foodAccelerationSteps[0] = _gameTime * 0.25f;
+        _foodAccelerationSteps[1] = _gameTime * 0.5f;
+
+        if (!(SpawnInterval <= 0)) _gameTime /= SpawnInterval; 
         ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize, GoodFood);
 
         // maybe change fixed size later
@@ -45,15 +54,15 @@ public class FoodEmitter : MonoBehaviour
         for (int i = 0; i < ShoppingListItems.Count || i < 4; i++)
         {
             ItemTextGameObjects[i].text = ShoppingListItems[i].name;
-            FoodObjects.Add(ShoppingListItems[i]);
-            FoodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
+            _foodObjects.Add(ShoppingListItems[i]);
+            _foodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
         }
 
-        int remainingFood = Convert.ToInt32(_gametime) - (2 * ShoppingListItems.Count);
+        int remainingFood = Convert.ToInt32(_gameTime) - (2 * ShoppingListItems.Count);
 
         for (int i = 1; i <= remainingFood; i++)
         {
-            FoodObjects.Add(i % 2 == 0
+            _foodObjects.Add(i % 2 == 0
                 ? BadFood[Random.Range(0, BadFood.Length)]
                 : GoodFood[Random.Range(0, GoodFood.Length)]);
         }
@@ -62,15 +71,28 @@ public class FoodEmitter : MonoBehaviour
         InvokeRepeating("Spawn", StartDelay, SpawnInterval);
     }
 
+    void Update()
+    {
+        if (IsRunning && GameController.Timer <= _foodAccelerationSteps[0])
+        {
+            _foodSpeed = _foodSpeed * (FoodSpeedAccelerationMultiplier * 0.75f);
+            _foodAccelerationSteps[0] = 0;
+        } else if (IsRunning && GameController.Timer <= _foodAccelerationSteps[1])
+        {
+            _foodSpeed = _foodSpeed * FoodSpeedAccelerationMultiplier;
+            _foodAccelerationSteps[1] = 0;
+        }
+    }
+
     void Spawn()
     {
-        if (!IsRunning || !FoodObjects.Any()) return;
+        if (!IsRunning || !_foodObjects.Any()) return;
 
-        var food = FoodObjects[Random.Range(0, FoodObjects.Count)];
-        FoodObjects.Remove(food);
+        var food = _foodObjects[Random.Range(0, _foodObjects.Count)];
+        _foodObjects.Remove(food);
 
         var emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), 0, 0) + transform.position, Quaternion.identity);
-        emittedFood.GetComponent<AnimateObject>().Speed = FoodSpeed;
+        emittedFood.GetComponent<AnimateObject>().Speed = _foodSpeed;
         InstantiatedFoodObjects.Add(emittedFood);
 
         Destroy(emittedFood, LifeTime);
@@ -78,7 +100,7 @@ public class FoodEmitter : MonoBehaviour
 
     public void SetGameTime(float gametime)
     {
-        _gametime = gametime;
+        _gameTime = gametime;
     }
 
 }
