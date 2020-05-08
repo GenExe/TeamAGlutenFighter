@@ -37,6 +37,16 @@ public class FoodEmitter : MonoBehaviour
     private float _foodSpeed;
     private float[] _foodAccelerationSteps = new float[2];
 
+    IEnumerator SpawnHandler()
+    {
+        yield return new WaitForSeconds(StartDelay);
+        while (IsRunning && _foodObjects.Any())
+        {
+            Spawn();
+            yield return new WaitForSeconds(SpawnInterval);
+        }
+    }
+
     void Start()
     {
         _gameTime = GameController.GameTime;
@@ -68,26 +78,32 @@ public class FoodEmitter : MonoBehaviour
         }
 
         IsRunning = true;
-        InvokeRepeating("Spawn", StartDelay, SpawnInterval);
+
+        StartCoroutine(SpawnHandler());
     }
 
     void Update()
     {
         if (IsRunning && GameController.Timer <= _foodAccelerationSteps[0])
         {
+
             _foodSpeed = _foodSpeed * (FoodSpeedAccelerationMultiplier * 0.75f);
+            ChangeSpeedOfInstantiated(_foodSpeed);
+            // SpawnInterval *= 0.5f; TODO: change Shoppinglist because there are too less objects generated for that
             _foodAccelerationSteps[0] = 0;
+
         } else if (IsRunning && GameController.Timer <= _foodAccelerationSteps[1])
         {
+
             _foodSpeed = _foodSpeed * FoodSpeedAccelerationMultiplier;
+            ChangeSpeedOfInstantiated(_foodSpeed);
+            // SpawnInterval *= 0.5f; TODO: change Shoppinglist because there are too less objects generated for that
             _foodAccelerationSteps[1] = 0;
         }
     }
 
     void Spawn()
     {
-        if (!IsRunning || !_foodObjects.Any()) return;
-
         var food = _foodObjects[Random.Range(0, _foodObjects.Count)];
         _foodObjects.Remove(food);
 
@@ -101,6 +117,14 @@ public class FoodEmitter : MonoBehaviour
     public void SetGameTime(float gametime)
     {
         _gameTime = gametime;
+    }
+
+    private void ChangeSpeedOfInstantiated(float speed)
+    {
+        foreach (var instantiatedFoodObject in InstantiatedFoodObjects)
+        {
+            if(instantiatedFoodObject != null) instantiatedFoodObject.GetComponent<AnimateObject>().Speed = speed;
+        }
     }
 
 }
