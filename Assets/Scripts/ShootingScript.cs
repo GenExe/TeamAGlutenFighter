@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;                       // add this library to use UI elements of Unity
-
 
 public class ShootingScript : MonoBehaviour
 {
@@ -33,7 +30,7 @@ public class ShootingScript : MonoBehaviour
                     if (FoodEmitter.ShoppingListItems.Any(sh => sh.name + "(Clone)" == foodName))
                     {
                         // increase of score with shopping list bonus
-                        _eventParam.ScoreClass = ScoreClass.SHOPPINGLIST;    
+                        _eventParam.ScoreClass = ScoreClass.SHOPPINGLIST;
                         EventManager.TriggerEvent("ObjectHit", _eventParam);
                         ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
 
@@ -50,7 +47,7 @@ public class ShootingScript : MonoBehaviour
                     else
                     {
                         // increase of score
-                        _eventParam.ScoreClass = ScoreClass.UP;                 
+                        _eventParam.ScoreClass = ScoreClass.UP;
                         EventManager.TriggerEvent("ObjectHit", _eventParam);
                         ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
                     }
@@ -66,7 +63,7 @@ public class ShootingScript : MonoBehaviour
                     // destroys object when scanned
                     Destroy(hit.collider.gameObject);
                     // instantiates the particle system at the point of hit
-                    Instantiate(FailFx, hit.point, Quaternion.identity); 
+                    Instantiate(FailFx, hit.point, Quaternion.identity);
                 }
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
@@ -77,8 +74,6 @@ public class ShootingScript : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
             }
-
-            
         }
     }
 }

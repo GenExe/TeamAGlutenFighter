@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
@@ -18,7 +13,6 @@ public class GameController : MonoBehaviour
 
     public float Timer;
     private FoodEmitter _foodEmitterScript;
-
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +56,6 @@ public class GameController : MonoBehaviour
                 {
                     EndScreen.SetActive(true);  //  Activates the restart button
                 }
-                                              
             }
         }
     }
@@ -72,7 +65,5 @@ public class GameController : MonoBehaviour
         EventManager.TriggerEvent("ScoreUpdated", new EventParam());
         Debug.Log("RestartGame() Button clicked!");
         SceneManager.LoadScene(0);
-    }
-
-    
+    } 
 }

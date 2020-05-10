@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class FoodEmitter : MonoBehaviour
@@ -16,6 +13,7 @@ public class FoodEmitter : MonoBehaviour
     public GameObject[] BadFood;
     public float SpawnInterval = 1.5f;        // Spawn interval
     public float EmitterWidth = 10f;          // Half width of emitter
+    public float EmitterHeight = 7f;          // Half height of emitter
     public float StartDelay = 0f;
     public float LifeTime = 5f;              // time emitted goodFood is active in the scene
     public float FoodSpeedStart = 5f;
@@ -24,7 +22,6 @@ public class FoodEmitter : MonoBehaviour
     public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
     public GameController GameController;
-    
 
     [HideInInspector]
     public List<GameObject> InstantiatedFoodObjects = new List<GameObject>();
@@ -107,7 +104,7 @@ public class FoodEmitter : MonoBehaviour
         var food = _foodObjects[Random.Range(0, _foodObjects.Count)];
         _foodObjects.Remove(food);
 
-        var emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), 0, 0) + transform.position, Quaternion.identity);
+        var emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), Random.Range(-EmitterHeight, EmitterHeight), 0) + transform.position, Quaternion.identity);
         emittedFood.GetComponent<AnimateObject>().Speed = _foodSpeed;
         InstantiatedFoodObjects.Add(emittedFood);
 
