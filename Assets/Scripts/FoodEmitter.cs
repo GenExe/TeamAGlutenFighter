@@ -43,7 +43,6 @@ public class FoodEmitter : MonoBehaviour
             yield return new WaitForSeconds(SpawnInterval);
         }
     }
-
     void Start()
     {
         _gameTime = GameController.GameTime;
@@ -53,12 +52,11 @@ public class FoodEmitter : MonoBehaviour
         _foodAccelerationSteps[0] = _gameTime * 0.25f;
         _foodAccelerationSteps[1] = _gameTime * 0.5f;
 
-        if (!(SpawnInterval <= 0)) _gameTime /= SpawnInterval; 
+        if (!(SpawnInterval <= 0)) _gameTime /= SpawnInterval;
         ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize, GoodFood);
 
         // maybe change fixed size later
-
-        for (int i = 0; i < ShoppingListItems.Count || i < 4; i++)
+        for (int i = 0; i < ShoppingListItems.Count || i < ShoppingListSize; i++)
         {
             ItemTextGameObjects[i].text = ShoppingListItems[i].name;
             _foodObjects.Add(ShoppingListItems[i]);
@@ -78,27 +76,34 @@ public class FoodEmitter : MonoBehaviour
 
         StartCoroutine(SpawnHandler());
     }
-
     void Update()
     {
+        if (_foodObjects.Count < 1)
+        {
+            refillFoodObjects(50);
+        }
+
         if (IsRunning && GameController.Timer <= _foodAccelerationSteps[0])
         {
-
             _foodSpeed = _foodSpeed * (FoodSpeedAccelerationMultiplier * 0.75f);
             ChangeSpeedOfInstantiated(_foodSpeed);
-            // SpawnInterval *= 0.5f; TODO: change Shoppinglist because there are too less objects generated for that
             _foodAccelerationSteps[0] = 0;
-
-        } else if (IsRunning && GameController.Timer <= _foodAccelerationSteps[1])
+        }
+        else if (IsRunning && GameController.Timer <= _foodAccelerationSteps[1])
         {
-
             _foodSpeed = _foodSpeed * FoodSpeedAccelerationMultiplier;
             ChangeSpeedOfInstantiated(_foodSpeed);
-            // SpawnInterval *= 0.5f; TODO: change Shoppinglist because there are too less objects generated for that
             _foodAccelerationSteps[1] = 0;
         }
     }
-
+    private void refillFoodObjects(int amount)
+    {
+        for (int i = 0; i < amount/2; i++)
+        {
+            _foodObjects.Add(GoodFood[Random.Range(0, GoodFood.Length)]);
+            _foodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
+        }
+    }
     void Spawn()
     {
         var food = _foodObjects[Random.Range(0, _foodObjects.Count)];
@@ -110,18 +115,15 @@ public class FoodEmitter : MonoBehaviour
 
         Destroy(emittedFood, LifeTime);
     }
-
     public void SetGameTime(float gametime)
     {
         _gameTime = gametime;
     }
-
     private void ChangeSpeedOfInstantiated(float speed)
     {
         foreach (var instantiatedFoodObject in InstantiatedFoodObjects)
         {
-            if(instantiatedFoodObject != null) instantiatedFoodObject.GetComponent<AnimateObject>().Speed = speed;
+            if (instantiatedFoodObject != null) instantiatedFoodObject.GetComponent<AnimateObject>().Speed = speed;
         }
     }
-
 }
