@@ -7,8 +7,8 @@ public class AnimateObjectIntoShelf : MonoBehaviour
     public bool isPutObjcetIntoShelf = false;
     public float movementSpeed;
 
-    public GameObject shelfFirstTarget;
-    public GameObject shelfFinalTarget;
+    private GameObject shelfFirstTarget;
+    private GameObject shelfFinalTarget;
     private bool reachedFirstTarget = false;
     private bool reachedFinalTarget = false;
 

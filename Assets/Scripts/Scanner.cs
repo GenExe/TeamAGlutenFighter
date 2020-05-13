@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;                       // add this library to use UI elements of Unity
-
+using UnityEngine.XR;
 
 public class Scanner : MonoBehaviour
 {
@@ -24,6 +24,15 @@ public class Scanner : MonoBehaviour
     private float cooldownCounter;
     public float laserCooldown;
 
+    //VR
+    //public GameObject laser;
+    //private InputDevice device;
+    //private HapticCapabilities capabilities;
+    //private bool supportHaptics;
+    //private bool supportsTrigger;
+    //private IEnumerator laserCoroutine;
+    //VR
+
     private void Start()
     {
         laserOuterBeam = GameObject.Find("/PlayerFov/Barcode Scanner/LaserOuterBeam");
@@ -32,12 +41,24 @@ public class Scanner : MonoBehaviour
         shooting = false;
         onCooldown = false;
         recoverAt = 0;
+
+        //VR
+        //device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        //supportHaptics = device.TryGetHapticCapabilities(out capabilities);
+        //VR
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        //VR
+        bool shooting = false;
+        //supportHaptics = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out shooting);
+        //if (!supportsTrigger && Input.GetButton("Fire1"))
+        //  shooting = true;
+        //VR
+
         if (Input.GetMouseButtonDown(0) && !shooting && !onCooldown)
         {
             shooting = true;

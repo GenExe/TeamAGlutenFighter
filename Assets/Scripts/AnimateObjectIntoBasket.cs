@@ -7,8 +7,8 @@ public class AnimateObjectIntoBasket : MonoBehaviour
     public bool isPutObjcetIntoBasket = false;
     public float movementSpeed;
 
-    public GameObject shoppingBasketFirstTarget;
-    public GameObject shoppingBasketFinalTarget;
+    private GameObject shoppingBasketFirstTarget;
+    private GameObject shoppingBasketFinalTarget;
     private bool reachedFirstTarget = false;
     private bool reachedFinalTarget = false;
 
