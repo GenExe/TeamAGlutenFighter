@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ScoreCalculator : MonoBehaviour {
+public class ScoreCalculator : MonoBehaviour
+{
+
+    public int MultiplierStep = 5;
+
     [SerializeField]
     private int _positiveHitBaseValue = 50;
     [SerializeField]
@@ -51,9 +55,9 @@ public class ScoreCalculator : MonoBehaviour {
     }
 
     void OnEnable () {
-        _objectHitListener = new Action<EventParam>(ObjectHit);
-        _restartListener = new Action<EventParam>(Restart);
-        _destroyListener = new Action<EventParam>(Destroy);
+        _objectHitListener = ObjectHit;
+        _restartListener = Restart;
+        _destroyListener = Destroy;
         EventManager.StartListening ("ObjectHit", _objectHitListener);
         EventManager.StartListening ("Restart", _restartListener);
         EventManager.StartListening ("Destroy", _destroyListener);
@@ -117,15 +121,15 @@ public class ScoreCalculator : MonoBehaviour {
         {
             _multiplyCounter++;
 
-            if (_multiplyCounter >= 20)
+            if (_multiplyCounter >= MultiplierStep * 4)
             {
                 tempMultiplier = 8;
             }
-            else if (_multiplyCounter >= 10)
+            else if (_multiplyCounter >= MultiplierStep * 2)
             {
                 tempMultiplier = 4;
             }
-            else if (_multiplyCounter >= 5)
+            else if (_multiplyCounter >= MultiplierStep)
             {
                 tempMultiplier = 2;
             }

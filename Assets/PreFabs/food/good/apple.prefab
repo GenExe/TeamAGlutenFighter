@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3342009409512615333}
   - component: {fileID: 5642392354078362059}
   m_Layer: 0
-  m_Name: apple
+  m_Name: Apple
   m_TagString: goodFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e11234e21293047b5a6515ba5a48e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRunning: 1
-  speed: 0.1
+  IsRunning: 1
+  Speed: 0.1
 --- !u!64 &5642392354078362059
 MeshCollider:
   m_ObjectHideFlags: 0

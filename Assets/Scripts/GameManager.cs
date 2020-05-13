@@ -6,38 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float gameTime = 20;
-    public bool running = true;
-    public GameObject endScreen;
+    public float GameTime = 20;
+    public bool Running = true;
+    public GameObject EndScreen;
     public GameObject FoodEmitter;
-    public Text timeText;
-    private float timer;
+    public Text TimeText;
+    private float _timer;
 
     private void Start()
     {
-        timer = gameTime;
+        _timer = GameTime;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (running)
+        if (Running)
         {
-            timer -= Time.deltaTime;
-            timeText.text = Mathf.Round(timer).ToString();              //  Displays the contdown
+            _timer -= Time.deltaTime;
+            TimeText.text = Mathf.Round(_timer).ToString();              //  Displays the contdown
 
-            if (timer <= 0f)
+            if (_timer <= 0f)
             {
-                running = false;
-                endScreen.SetActive(true);                              //  Activates the restart button
+                Running = false;
+                EndScreen.SetActive(true);                              //  Activates the restart button
                 FoodEmitter.SetActive(false);                           //  Deactivates the FoodEmitter
                 // Here you could also load a new scene to prevent the Foodemitter to create additional objects ...
             }
         }
     }
 
-    public void restartGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(0);
     }

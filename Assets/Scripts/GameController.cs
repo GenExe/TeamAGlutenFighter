@@ -1,66 +1,60 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject foodEmitter;
-    public float gameTime = 20;
-    public bool running = true;
-    public GameObject endScreen;
-    public Text timeText;
-    public Highscore highscore; 
- 
+    public GameObject FoodEmitter;
+    public float GameTime = 20;
+    public bool Running = true;
+    public GameObject EndScreen;
+    public Text TimeText;
+    public Highscore Highscore;
 
-    private float _timer;
+    public float Timer;
     private FoodEmitter _foodEmitterScript;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        _timer = gameTime;
-        _foodEmitterScript = foodEmitter.GetComponent<FoodEmitter>();
-
+        Timer = GameTime;
+        _foodEmitterScript = FoodEmitter.GetComponent<FoodEmitter>();
+        _foodEmitterScript.SetGameTime(GameTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (running)
+        if (Running)
         {
-            _timer -= Time.deltaTime;
-            timeText.text = Mathf.Round(_timer).ToString();              //  Displays the countdown
+            Timer -= Time.deltaTime;
+            TimeText.text = Mathf.Round(Timer).ToString();              //  Displays the countdown
 
-            if (_timer <= 0f)
+            if (Timer <= 0f)
             {
-                // stop animation from every instantiated food and remove collider
-                foreach (var food in _foodEmitterScript.instantiatedFoodObjects)
+                // stop animation from every instantiated goodFood and remove collider
+                foreach (var food in _foodEmitterScript.InstantiatedFoodObjects)
                 {
                     if (food != null)
                     {
                         AnimateObject animateScript = food.GetComponent<AnimateObject>();
-                        animateScript.isRunning = false;
+                        animateScript.IsRunning = false;
                         food.GetComponent<MeshCollider>().enabled = false;
                     }
                 }
-                running = false;
-                _foodEmitterScript.isRunning = false;
 
-                if (highscore.NewHighscore)
+                Running = false;
+                _foodEmitterScript.IsRunning = false;
+
+                if (Highscore.NewHighscore)
                 {
-                    highscore.HighscoreInput.SetActive(true);
-                    highscore.NickInputField.Select();
-                    highscore.NickInputField.ActivateInputField();
+                    Highscore.HighscoreInput.SetActive(true);
+                    Highscore.NickInputField.Select();
+                    Highscore.NickInputField.ActivateInputField();
                 }
                 else
                 {
-                    endScreen.SetActive(true);                              //  Activates the restart button
+                    EndScreen.SetActive(true);  //  Activates the restart button
                 }
             }
         }
@@ -71,7 +65,5 @@ public class GameController : MonoBehaviour
         EventManager.TriggerEvent("ScoreUpdated", new EventParam());
         Debug.Log("RestartGame() Button clicked!");
         SceneManager.LoadScene(0);
-    }
-
-    
+    } 
 }
