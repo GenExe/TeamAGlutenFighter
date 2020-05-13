@@ -53,7 +53,6 @@ public class Scanner : MonoBehaviour
     void Update()
     {
         //VR
-        bool shooting = false;
         //supportHaptics = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out shooting);
         //if (!supportsTrigger && Input.GetButton("Fire1"))
         //  shooting = true;
