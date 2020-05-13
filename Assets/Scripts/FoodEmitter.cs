@@ -18,6 +18,8 @@ public class FoodEmitter : MonoBehaviour
     public float LifeTime = 5f;              // time emitted goodFood is active in the scene
     public float FoodSpeedStart = 5f;
     public int FoodSpeedAccelerationMultiplier = 2;
+    public List<Transform> SpawnPoints = new List<Transform>();
+
 
     public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
@@ -107,13 +109,21 @@ public class FoodEmitter : MonoBehaviour
     void Spawn()
     {
         var food = _foodObjects[Random.Range(0, _foodObjects.Count)];
+        GameObject emittedFood;
         _foodObjects.Remove(food);
-
-        var emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), Random.Range(-EmitterHeight, EmitterHeight), 0) + transform.position, Quaternion.identity);
+        if (!SpawnPoints.Any())
+        {
+            emittedFood = Instantiate(food, new Vector3(Random.Range(-EmitterWidth, EmitterWidth), Random.Range(-EmitterHeight, EmitterHeight), 0) + transform.position, Quaternion.identity);
+        }
+        // if not, a random SpawnPoint is selected each time
+        else
+        {
+            emittedFood = Instantiate(food, SpawnPoints[Random.Range(0, SpawnPoints.Count)].position, Quaternion.identity);
+        }
         emittedFood.GetComponent<AnimateObject>().Speed = _foodSpeed;
         InstantiatedFoodObjects.Add(emittedFood);
 
-        Destroy(emittedFood, LifeTime);
+        // Destroy(emittedFood, LifeTime);
     }
     public void SetGameTime(float gametime)
     {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 105853880293161397}
   - component: {fileID: 5826928222808668089}
   - component: {fileID: 7295659720200882887}
+  - component: {fileID: 5046455049762740736}
   m_Layer: 0
   m_Name: Shrimp
   m_TagString: goodFood
@@ -108,3 +109,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
+--- !u!114 &5046455049762740736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820799534707133801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1205ab3bb224157499b9898ded1e9ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoBasket: 0
+  movementSpeed: 0

@@ -89,8 +89,9 @@ GameObject:
   - component: {fileID: 7744469741270546251}
   - component: {fileID: 7849412051094099454}
   - component: {fileID: 1801206932112534325}
+  - component: {fileID: -2571552802305598758}
   m_Layer: 0
-  m_Name: carrot 1
+  m_Name: carrot
   m_TagString: goodFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,6 +141,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
+--- !u!114 &-2571552802305598758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711133010339022168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1205ab3bb224157499b9898ded1e9ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoBasket: 0
+  movementSpeed: 0
 --- !u!1 &7977894247307161910
 GameObject:
   m_ObjectHideFlags: 0

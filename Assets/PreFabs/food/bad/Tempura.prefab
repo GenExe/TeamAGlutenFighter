@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1498952618507398107}
   - component: {fileID: 5314065131080746496}
   - component: {fileID: 1964044153076607901}
+  - component: {fileID: 7380272430218312893}
   m_Layer: 0
   m_Name: Tempura
   m_TagString: badFood
@@ -94,6 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
 --- !u!64 &1964044153076607901
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -108,3 +112,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 2115714310671141232, guid: fa35f5402c0b842eb9ea214a40ad8be1, type: 3}
+--- !u!114 &7380272430218312893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932684353280171783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

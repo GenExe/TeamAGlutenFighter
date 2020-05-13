@@ -15,22 +15,6 @@ public class Scanner : MonoBehaviour
 
     private Action<EventParam> updatedScoreListener;
 
-    void OnEnable () {
-        updatedScoreListener = new Action<EventParam>(RefreshScore);
-        EventManager.StartListening ("ScoreUpdated", updatedScoreListener);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.StopListening("ScoreUpdated", updatedScoreListener);
-    }
-
-
-    void RefreshScore(EventParam e) {
-        scoreText.text = e.Score.ToString();
-    }
-
-
     //public float cooldownTime = 2;
 
     public float laserUptime;
@@ -51,6 +35,20 @@ public class Scanner : MonoBehaviour
     //private IEnumerator laserCoroutine;
     //VR
 
+    void OnEnable () {
+        updatedScoreListener = new Action<EventParam>(RefreshScore);
+        EventManager.StartListening ("ScoreUpdated", updatedScoreListener);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("ScoreUpdated", updatedScoreListener);
+    }
+
+    void RefreshScore(EventParam e) {
+        scoreText.text = e.Score.ToString();
+    }
+
     private void Start()
     {
         laserOuterBeam = GameObject.Find("/PlayerFov/Barcode Scanner/LaserOuterBeam");
@@ -65,7 +63,6 @@ public class Scanner : MonoBehaviour
         //supportHaptics = device.TryGetHapticCapabilities(out capabilities);
         //VR
     }
-
 
     // Update is called once per frame
     void Update()
@@ -107,7 +104,7 @@ public class Scanner : MonoBehaviour
                     hitObjData.ScoreClass = ScoreClass.UP;
                     hit.collider.tag = "-";
                     hit.transform.gameObject.GetComponent<AnimateObjectIntoBasket>().isPutObjcetIntoBasket = true;  //Moves objects into basket, NullReferenceException occurs???
-                    hit.transform.gameObject.GetComponent<AnimateObject>().isRunning = false;
+                    hit.transform.gameObject.GetComponent<AnimateObject>().IsRunning = false;
                     //Destroy(hit.collider.gameObject);
                     Instantiate(successFX, hit.point, Quaternion.identity);
                 }
@@ -117,7 +114,7 @@ public class Scanner : MonoBehaviour
                     hitObjData.ScoreClass = ScoreClass.DOWN;
                     hit.collider.tag = "-";
                     hit.transform.gameObject.GetComponent<AnimateObjectIntoShelf>().isPutObjcetIntoShelf = true;  //Moves objects into shelf, NullReferenceException occurs???
-                    hit.transform.gameObject.GetComponent<AnimateObject>().isRunning = false;
+                    hit.transform.gameObject.GetComponent<AnimateObject>().IsRunning = false;
                     //Destroy(hit.collider.gameObject); // destroys object when scanned
                     Instantiate(failFX, hit.point, Quaternion.identity); // instantiates the particle system at the point of hit
                 }

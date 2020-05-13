@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7824778826653941134}
   - component: {fileID: -1216045517637539300}
   - component: {fileID: 5844509458477322040}
+  - component: {fileID: 9010184619697391845}
   m_Layer: 0
   m_Name: Fries
   m_TagString: badFood
@@ -94,6 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
 --- !u!64 &5844509458477322040
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -108,3 +112,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -5191355757697629047, guid: 3fc3fb1a12bd74439afc27c231b173ed, type: 3}
+--- !u!114 &9010184619697391845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407064840759576914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

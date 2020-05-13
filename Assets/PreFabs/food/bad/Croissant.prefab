@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8159831314347493356}
   - component: {fileID: -3670619200862018761}
   - component: {fileID: 1143719960474836007}
+  - component: {fileID: 1897203732218098968}
   m_Layer: 0
   m_Name: Croissant
   m_TagString: badFood
@@ -94,6 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
 --- !u!64 &1143719960474836007
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -108,3 +112,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -7151485785541977250, guid: 73012184b6b9d4b7d8e921af21341b6f, type: 3}
+--- !u!114 &1897203732218098968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566431471621681968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

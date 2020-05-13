@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public GameObject EndScreen;
     public Text TimeText;
     public Highscore Highscore;
+    public AudioSource VictoryAudioSource;
 
     public float Timer;
     private FoodEmitter _foodEmitterScript;
@@ -48,6 +49,7 @@ public class GameController : MonoBehaviour
 
                 if (Highscore.NewHighscore)
                 {
+                    VictoryAudioSource.Play();
                     Highscore.HighscoreInput.SetActive(true);
                     Highscore.NickInputField.Select();
                     Highscore.NickInputField.ActivateInputField();
@@ -62,6 +64,7 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
+        VictoryAudioSource.Stop();
         EventManager.TriggerEvent("ScoreUpdated", new EventParam());
         Debug.Log("RestartGame() Button clicked!");
         SceneManager.LoadScene(0);
