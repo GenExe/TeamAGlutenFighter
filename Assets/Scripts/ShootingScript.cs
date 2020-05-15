@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;                       // add this library to use UI elements of Unity
+using UnityEngine.XR;
 
 public class ShootingScript : MonoBehaviour
 {
@@ -13,10 +15,6 @@ public class ShootingScript : MonoBehaviour
     public GameObject laserInnerBeam;
     public AudioSource laserSound;
 
-    private EventParam _eventParam = new EventParam();
-
-    //public float cooldownTime = 2;
-
     public float laserUptime;
     private float uptimeCounter;
     private float recoverAt;
@@ -26,14 +24,12 @@ public class ShootingScript : MonoBehaviour
     private float cooldownCounter;
     public float laserCooldown;
 
-    //VR
-    //public GameObject laser;
-    //private InputDevice device;
-    //private HapticCapabilities capabilities;
-    //private bool supportHaptics;
-    //private bool supportsTrigger;
-    //private IEnumerator laserCoroutine;
-    //VR
+    public GameObject laser;
+    private InputDevice device;
+    private HapticCapabilities capabilities;
+    private bool supportHaptics;
+    private bool supportsTrigger;
+    private IEnumerator laserCoroutine;
 
     private void Start()
     {
@@ -42,19 +38,18 @@ public class ShootingScript : MonoBehaviour
         onCooldown = false;
         recoverAt = 0;
 
-        //VR
-        //device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-        //supportHaptics = device.TryGetHapticCapabilities(out capabilities);
-        //VR
+#if !UNITY_EDITOR || !UNITY_STANDALONE
+        device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        supportHaptics = device.TryGetHapticCapabilities(out capabilities);
+#endif
     }
     void Update()
     {
-        //VR
-        //supportHaptics = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out shooting);
-        //if (!supportsTrigger && Input.GetButton("Fire1"))
-        //  shooting = true;
-        //VR
-
+#if !UNITY_EDITOR || !UNITY_STANDALONE
+        supportHaptics = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out shooting);
+        if (!supportsTrigger && Input.GetButton("Fire1"))
+          shooting = true;
+#endif
 
         if (Input.GetMouseButtonDown(0) && !shooting && !onCooldown)
         {
@@ -80,8 +75,8 @@ public class ShootingScript : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit,
                 Mathf.Infinity))
             {
-                EventParam hitObjData = new EventParam();
-                hitObjData.HitPoint = hit.point;
+                EventParam eventParam = new EventParam();
+                eventParam.HitPoint = hit.point;
 
                 if (hit.collider.tag == "goodFood")
                 {
@@ -94,8 +89,8 @@ public class ShootingScript : MonoBehaviour
                     if (FoodEmitter.ShoppingListItems.Any(sh => sh.name + "(Clone)" == foodName))
                     {
                         // increase of score with shopping list bonus
-                        _eventParam.ScoreClass = ScoreClass.SHOPPINGLIST;
-                        EventManager.TriggerEvent("ObjectHit", _eventParam);
+                        eventParam.ScoreClass = ScoreClass.SHOPPINGLIST;
+                        EventManager.TriggerEvent("ObjectHit", eventParam);
                         ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
 
                         // strikeout hit fod from shoppinglist 
@@ -112,30 +107,30 @@ public class ShootingScript : MonoBehaviour
                     else
                     {
                         // increase of score
-                        _eventParam.ScoreClass = ScoreClass.UP;
-                        EventManager.TriggerEvent("ObjectHit", _eventParam);
+                        eventParam.ScoreClass = ScoreClass.UP;
+                        EventManager.TriggerEvent("ObjectHit", eventParam);
                         ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
                     }
-                    
+
                     //Destroy(hit.collider.gameObject);
                 }
 
                 if (hit.collider.tag == "badFood")
                 {
-                    Instantiate(FailFx, hit.point, Quaternion.identity); 
+                    Instantiate(FailFx, hit.point, Quaternion.identity);
 
                     //Moves objects into shelf, NullReferenceException occurs???
                     hit.collider.tag = "-";
-                    hit.transform.gameObject.GetComponent<AnimateObjectIntoShelf>().isPutObjcetIntoShelf = true;  
+                    hit.transform.gameObject.GetComponent<AnimateObjectIntoShelf>().isPutObjcetIntoShelf = true;
                     hit.transform.gameObject.GetComponent<AnimateObject>().IsRunning = false;
 
                     // decrease of score
-                    _eventParam.ScoreClass = ScoreClass.DOWN;
-                    EventManager.TriggerEvent("ObjectHit", _eventParam);
+                    eventParam.ScoreClass = ScoreClass.DOWN;
+                    EventManager.TriggerEvent("ObjectHit", eventParam);
                     ActualScoreText.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
 
                 }
-                EventManager.TriggerEvent("ObjectHit", hitObjData);
+                EventManager.TriggerEvent("ObjectHit", eventParam);
             }
             else
             {
