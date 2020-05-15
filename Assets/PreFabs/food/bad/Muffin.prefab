@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1833354937864747393}
   - component: {fileID: -538627685271958383}
   - component: {fileID: -8336654202895608837}
+  - component: {fileID: 8959852088087612040}
   m_Layer: 0
   m_Name: Muffin
   m_TagString: badFood
@@ -94,6 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
 --- !u!64 &-8336654202895608837
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -108,3 +112,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -4112205284317897512, guid: c046df9cb94124d6294564b4730b9a6f, type: 3}
+--- !u!114 &8959852088087612040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93929725985082717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

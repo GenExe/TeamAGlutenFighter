@@ -6,6 +6,9 @@ TagManager:
   tags:
   - goodFood
   - badFood
+  - good
+  - bad
+  - '-'
   layers:
   - Default
   - TransparentFX

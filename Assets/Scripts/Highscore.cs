@@ -17,6 +17,7 @@ public class Highscore : MonoBehaviour
     public GameObject HighscoreInput;
     public InputField NickInputField;
     public bool NewHighscore = false;
+    public bool ShouldResetHighscore = false;
 
     private int _highscoreScore = 0;
     private String _hsName = String.Empty;
@@ -26,6 +27,7 @@ public class Highscore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ResetHighscore();
         NewHighscore = false;
         isRuninng = _gameController.Running;
 
@@ -55,5 +57,14 @@ public class Highscore : MonoBehaviour
         PlayerPrefs.SetString("nickname", NickInputField.text);
         PlayerPrefs.SetInt("highscore", _scoreCalculator.Score);
         _gameController.EndScreen.SetActive(true);
+    }
+
+    public void ResetHighscore()
+    {
+        if (ShouldResetHighscore)
+        {
+            PlayerPrefs.SetString("nickname", "YOU");
+            PlayerPrefs.SetInt("highscore", 0);
+        }
     }
 }

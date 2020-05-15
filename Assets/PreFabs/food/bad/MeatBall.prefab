@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4534691913657623504}
   - component: {fileID: 1748529573154324093}
   - component: {fileID: -2647704956809810617}
+  - component: {fileID: 1341099496144453606}
   m_Layer: 0
   m_Name: MeatBall
   m_TagString: badFood
@@ -94,6 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
 --- !u!64 &-2647704956809810617
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -108,3 +112,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 397652961611070256, guid: 01591b6348a7d4a0ba87099c8baf057c, type: 3}
+--- !u!114 &1341099496144453606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797474556945897228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

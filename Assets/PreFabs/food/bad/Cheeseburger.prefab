@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8203888667891250891}
   - component: {fileID: 4360867016608553362}
   - component: {fileID: 8099081659294007374}
+  - component: {fileID: 5651717465716751588}
   m_Layer: 0
-  m_Name: cheesburger
+  m_Name: Cheeseburger
   m_TagString: badFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,3 +111,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
+--- !u!114 &5651717465716751588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631005746633671191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

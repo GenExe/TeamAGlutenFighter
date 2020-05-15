@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6301424941619822026}
   - component: {fileID: 3889336279623348631}
   - component: {fileID: -9131563856355552193}
+  - component: {fileID: -1745517474659852060}
   m_Layer: 0
   m_Name: Coconut
   m_TagString: goodFood
@@ -108,3 +109,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
+--- !u!114 &-1745517474659852060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715066370972649750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1205ab3bb224157499b9898ded1e9ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoBasket: 0
+  movementSpeed: 0

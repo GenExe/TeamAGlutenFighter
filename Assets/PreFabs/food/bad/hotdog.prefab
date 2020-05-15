@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5520352176330286663}
   - component: {fileID: 7030107920024229290}
   - component: {fileID: 5778461622753855964}
+  - component: {fileID: 690298536093974818}
   m_Layer: 0
   m_Name: hotdog
   m_TagString: badFood
@@ -108,3 +109,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
+--- !u!114 &690298536093974818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098134492007535259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 0

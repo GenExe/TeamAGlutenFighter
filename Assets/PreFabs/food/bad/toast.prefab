@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7408163119266672420}
   - component: {fileID: 2747927010978972817}
   - component: {fileID: 4047295020308384643}
+  - component: {fileID: 7179033767206021619}
   - component: {fileID: 4515477996555250074}
   m_Layer: 0
   m_Name: toast
@@ -113,6 +114,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRunning: 1
+  speed: 0.1
+--- !u!114 &7179033767206021619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147869775690996728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48448fa284fcfd24c9075f08da1c8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoShelf: 0
+  movementSpeed: 10
+  shelfFirstTarget: {fileID: 1448022932568048094, guid: d5627a4ca42ca09428aea360a5c896e7,
+    type: 3}
+  shelfFinalTarget: {fileID: 704184672973717511, guid: 038764a730291a644841c6d101413461,
+    type: 3}
 --- !u!64 &4515477996555250074
 MeshCollider:
   m_ObjectHideFlags: 0

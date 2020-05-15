@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5931752639361340031}
   - component: {fileID: 7496030128201144469}
   - component: {fileID: -7829550064318935226}
+  - component: {fileID: -7254045126884498558}
   m_Layer: 0
   m_Name: Salad
   m_TagString: goodFood
@@ -108,3 +109,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRunning: 1
   Speed: 0.1
+  _rotationSpeedX: 0
+  _rotationSpeedY: 0
+  _rotationSpeedZ: 0
+--- !u!114 &-7254045126884498558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362951070770030243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1205ab3bb224157499b9898ded1e9ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPutObjcetIntoBasket: 0
+  movementSpeed: 0
