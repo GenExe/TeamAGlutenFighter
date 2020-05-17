@@ -18,11 +18,12 @@ public class ShootingScript : MonoBehaviour
     public float laserUptime;
     private float uptimeCounter;
     private float recoverAt;
-    private bool shooting;
+    public bool shooting;
 
     public bool onCooldown;
     private float cooldownCounter;
     public float laserCooldown;
+    public bool activateCooldown;
 
     public GameObject laser;
     private InputDevice device;
@@ -55,15 +56,20 @@ public class ShootingScript : MonoBehaviour
         {
             shooting = true;
             laserSound.Play();
+            activateCooldown = true;
         }
 
         if (!onCooldown && shooting)
         {
+            
             activateLaser();
+            
+
         }
         else
         {
             cooldownLaser();
+            
         }
 
         if (shooting)
@@ -145,6 +151,7 @@ public class ShootingScript : MonoBehaviour
         if (recoverAt < uptimeCounter)
         {
             uptimeCounter -= 1 * Time.deltaTime;
+            
         }
         else
         {
@@ -160,6 +167,7 @@ public class ShootingScript : MonoBehaviour
     {
         if (recoverAt < cooldownCounter)
         {
+            
             cooldownCounter -= 1 * Time.deltaTime;
         }
         else
