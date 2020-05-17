@@ -20,7 +20,7 @@ public class ShootingScript : MonoBehaviour
     private float recoverAt;
     private bool shooting;
 
-    private bool onCooldown;
+    public bool onCooldown;
     private float cooldownCounter;
     public float laserCooldown;
 

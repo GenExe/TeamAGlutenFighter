@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimateObjectIntoShelf : MonoBehaviour
 {
     public bool isPutObjcetIntoShelf = false;
-    public float movementSpeed;
+    private float movementSpeed;
 
     private GameObject shelfFirstTarget;
     private GameObject shelfFinalTarget;
@@ -25,12 +25,14 @@ public class AnimateObjectIntoShelf : MonoBehaviour
     private int shelfHeight = 3;
     private static int countObjInHeight = 0;
 
-    private float shelfStartingPositionX;
-    private float shelfStartingPositionY;
-    private float shelfStartingPositionZ;
+    private static float shelfStartingPositionX;
+    private static float shelfStartingPositionY;
+    private static float shelfStartingPositionZ;
 
     void Start()
     {
+        movementSpeed = 10;
+
         shelfFirstTarget = GameObject.Find("/Environment/Shelf3/FirstTarget");
         shelfFinalTarget = GameObject.Find("/Environment/Shelf3/FinalTarget");
 
@@ -53,13 +55,13 @@ public class AnimateObjectIntoShelf : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, shelfFirstTarget.transform.position) > 0.8f && reachedFirstTarget == false)
                 {
-                    float step = 0.2f + (movementSpeed * Time.deltaTime);
+                    float step = movementSpeed * Time.deltaTime;
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shelfFirstTarget.transform.position, step);
                 }
                 else if (Vector3.Distance(transform.position, shelfFinalTarget.transform.position) > 0.8f && reachedFinalTarget == false)
                 {
                     reachedFirstTarget = true;
-                    float step = 0.2f + (movementSpeed * Time.deltaTime);
+                    float step = movementSpeed * Time.deltaTime;
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shelfFinalTarget.transform.position, step);
                 }
                 else
@@ -74,7 +76,7 @@ public class AnimateObjectIntoShelf : MonoBehaviour
                     else if (countObjInHeight < this.shelfHeight)
                     {
                         shelfStartingPositionY -= shelfHeightCoordinate;
-                        shelfStartingPositionX -= countObjInLine * objectGab;
+                        shelfStartingPositionX = shelfStartingPositionX - (countObjInLine * objectGab);
                         shelfFinalTarget.transform.position = new Vector3(shelfStartingPositionX, shelfStartingPositionY, shelfStartingPositionZ);
                         countObjInLine = 0;
                         countObjInHeight++;

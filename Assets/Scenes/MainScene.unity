@@ -5027,6 +5027,11 @@ PrefabInstance:
       propertyPath: VictoryAudioSource
       value: 
       objectReference: {fileID: 96346593}
+    - target: {fileID: 642237790106618711, guid: c5174263cdd80d947bc98a662cbdf0cf,
+        type: 3}
+      propertyPath: GameTime
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 642237790106618664, guid: c5174263cdd80d947bc98a662cbdf0cf,
         type: 3}
       propertyPath: m_LocalPosition.x

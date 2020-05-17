@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimateObjectIntoBasket : MonoBehaviour
 {
     public bool isPutObjcetIntoBasket = false;
-    public float movementSpeed;
+    private float movementSpeed;
 
     private GameObject shoppingBasketFirstTarget;
     private GameObject shoppingBasketFinalTarget;
@@ -15,9 +15,9 @@ public class AnimateObjectIntoBasket : MonoBehaviour
     private GameObject trailEffect;
     private bool instantiateTrail = true;
 
-    private float basketStartingPositionX;
-    private float basketStartingPositionY;
-    private float basketStartingPositionZ;
+    private static float basketStartingPositionX;
+    private static float basketStartingPositionY;
+    private static float basketStartingPositionZ;
 
     private float objectGab = 1;
     private float objectGabRowAddition = 0.3f;
@@ -34,6 +34,8 @@ public class AnimateObjectIntoBasket : MonoBehaviour
     private static bool basketFull = false;
     void Start()
     {
+        movementSpeed = 10;
+
         shoppingBasketFirstTarget = GameObject.Find("/Environment/ShoppingBasket/FirstTarget"); 
         shoppingBasketFinalTarget = GameObject.Find("/Environment/ShoppingBasket/FinalTarget");
 
@@ -56,13 +58,13 @@ public class AnimateObjectIntoBasket : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, shoppingBasketFirstTarget.transform.position) > 0.5 && reachedFirstTarget == false)
                 {
-                    float step = 0.2f + (movementSpeed * Time.deltaTime);
+                    float step = movementSpeed * Time.deltaTime;
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFirstTarget.transform.position, step);
                 }
                 else if (Vector3.Distance(transform.position, shoppingBasketFinalTarget.transform.position) > 0.5 && reachedFinalTarget == false)
                 {
                     reachedFirstTarget = true;
-                    float step = 0.2f + (movementSpeed * Time.deltaTime);
+                    float step = movementSpeed * Time.deltaTime;
                     this.transform.position = Vector3.MoveTowards(this.transform.position, shoppingBasketFinalTarget.transform.position, step);
                 } else
                 {
