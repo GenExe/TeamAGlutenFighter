@@ -114,7 +114,6 @@ public class RaycastHandler : MonoBehaviour
                 EventManager.TriggerEvent("ObjectHit", eventParam);
                 Score.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
             }
-
             //Destroy(hit.collider.gameObject);
         }
 
@@ -131,7 +130,6 @@ public class RaycastHandler : MonoBehaviour
             eventParam.ScoreClass = ScoreClass.DOWN;
             EventManager.TriggerEvent("ObjectHit", eventParam);
             Score.text = EventManager.FindObjectOfType<ScoreCalculator>().Score.ToString();
-
         }
         EventManager.TriggerEvent("ObjectHit", eventParam);
     }

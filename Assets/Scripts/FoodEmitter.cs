@@ -56,19 +56,16 @@ public class FoodEmitter : MonoBehaviour
         _foodAccelerationSteps[1] = _gameTime * 0.5f;
 
         if (!(SpawnInterval <= 0)) _gameTime /= SpawnInterval;
-        ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize, GoodFood);
-        foreach (var bad in BadFood)
-        {
-            bad.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
-        }
         foreach (var good in GoodFood)
         {
             good.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
         }
-        foreach (var shop in ShoppingListItems)
+        foreach (var bad in BadFood)
         {
-            shop.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
+            bad.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
         }
+        ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize, GoodFood);
+
         // maybe change fixed size later
         for (int i = 0; i < ShoppingListItems.Count || i < ShoppingListSize; i++)
         {
