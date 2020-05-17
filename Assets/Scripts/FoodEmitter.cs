@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using Random = UnityEngine.Random;
 
 public class FoodEmitter : MonoBehaviour
@@ -19,7 +20,7 @@ public class FoodEmitter : MonoBehaviour
     public float FoodSpeedStart = 5f;
     public int FoodSpeedAccelerationMultiplier = 2;
     public List<Transform> SpawnPoints = new List<Transform>();
-
+    public XRInteractionManager InteractionManager;
 
     public ShoppingListScript ShoppingListScript;
     public TextMeshProUGUI[] ItemTextGameObjects;
@@ -56,7 +57,18 @@ public class FoodEmitter : MonoBehaviour
 
         if (!(SpawnInterval <= 0)) _gameTime /= SpawnInterval;
         ShoppingListItems = ShoppingListScript.CreateShoppingList(ShoppingListSize, GoodFood);
-
+        foreach (var bad in BadFood)
+        {
+            bad.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
+        }
+        foreach (var good in GoodFood)
+        {
+            good.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
+        }
+        foreach (var shop in ShoppingListItems)
+        {
+            shop.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
+        }
         // maybe change fixed size later
         for (int i = 0; i < ShoppingListItems.Count || i < ShoppingListSize; i++)
         {
@@ -100,7 +112,7 @@ public class FoodEmitter : MonoBehaviour
     }
     private void refillFoodObjects(int amount)
     {
-        for (int i = 0; i < amount/2; i++)
+        for (int i = 0; i < amount / 2; i++)
         {
             _foodObjects.Add(GoodFood[Random.Range(0, GoodFood.Length)]);
             _foodObjects.Add(BadFood[Random.Range(0, BadFood.Length)]);
@@ -120,7 +132,9 @@ public class FoodEmitter : MonoBehaviour
         {
             emittedFood = Instantiate(food, SpawnPoints[Random.Range(0, SpawnPoints.Count)].position, Quaternion.identity);
         }
+        emittedFood.GetComponent<XRSimpleInteractable>().interactionManager = InteractionManager;
         emittedFood.GetComponent<AnimateObject>().Speed = _foodSpeed;
+
         InstantiatedFoodObjects.Add(emittedFood);
 
         // Destroy(emittedFood, LifeTime);
