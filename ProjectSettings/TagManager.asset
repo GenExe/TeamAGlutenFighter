@@ -9,7 +9,6 @@ TagManager:
   - good
   - bad
   - '-'
-  - restart
   layers:
   - Default
   - TransparentFX
