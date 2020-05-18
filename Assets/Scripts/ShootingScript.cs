@@ -35,6 +35,7 @@ public class ShootingScript : MonoBehaviour
     private void Start()
     {
         uptimeCounter = laserUptime;
+        cooldownCounter = laserCooldown;
         shooting = false;
         onCooldown = false;
         recoverAt = 0;
@@ -61,15 +62,11 @@ public class ShootingScript : MonoBehaviour
 
         if (!onCooldown && shooting)
         {
-            
             activateLaser();
-            
-
         }
         else
         {
             cooldownLaser();
-            
         }
 
         if (shooting)
@@ -151,7 +148,6 @@ public class ShootingScript : MonoBehaviour
         if (recoverAt < uptimeCounter)
         {
             uptimeCounter -= 1 * Time.deltaTime;
-            
         }
         else
         {
@@ -167,7 +163,6 @@ public class ShootingScript : MonoBehaviour
     {
         if (recoverAt < cooldownCounter)
         {
-            
             cooldownCounter -= 1 * Time.deltaTime;
         }
         else

@@ -27,7 +27,6 @@ public class LaserUIFeedback : MonoBehaviour
             {
                 if (!shootingScript.shooting)
                 {
-                    
                     shootingScript.activateCooldown = false;
                 }
 
