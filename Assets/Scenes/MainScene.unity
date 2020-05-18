@@ -1406,7 +1406,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -0.023030698, y: -2.1769977, z: 2.2910323, w: 1.346379}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2337,7 +2337,7 @@ PrefabInstance:
     - target: {fileID: 5277398423982746073, guid: 505460efc8cfe724e94006860ad17a59,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.6592311
+      value: 0.11478074
       objectReference: {fileID: 0}
     - target: {fileID: 5277398423982746073, guid: 505460efc8cfe724e94006860ad17a59,
         type: 3}
@@ -3801,7 +3801,7 @@ PrefabInstance:
     - target: {fileID: 5277398423982746073, guid: 505460efc8cfe724e94006860ad17a59,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.6592311
+      value: 0.27034563
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 505460efc8cfe724e94006860ad17a59, type: 3}
@@ -4834,7 +4834,7 @@ PrefabInstance:
     - target: {fileID: 5277398423982746073, guid: 505460efc8cfe724e94006860ad17a59,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.6592311
+      value: 0.20923418
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 505460efc8cfe724e94006860ad17a59, type: 3}
@@ -5529,6 +5529,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158700505963359200, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 158700505963359200, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 158700505963359200, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.1524
+      objectReference: {fileID: 0}
+    - target: {fileID: 158700505963359200, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5517989
+      objectReference: {fileID: 0}
+    - target: {fileID: 158700505963359200, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5517989
+      objectReference: {fileID: 0}
+    - target: {fileID: 158700505963359200, guid: df4c87486020c534abdac8f8ef0b5c2c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5517989
       objectReference: {fileID: 0}
     - target: {fileID: 2146959924892502075, guid: df4c87486020c534abdac8f8ef0b5c2c,
         type: 3}
