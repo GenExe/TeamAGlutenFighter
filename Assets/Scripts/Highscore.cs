@@ -5,10 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class Highscore : MonoBehaviour
 {
     [SerializeField]
-    private Text _highscore = null;
+    private TextMeshProUGUI _highscore = null;
     [SerializeField]
     private ScoreCalculator _scoreCalculator = null;
     [SerializeField]
@@ -34,7 +36,8 @@ public class Highscore : MonoBehaviour
         _highscoreScore = PlayerPrefs.GetInt("highscore", 0);
         _hsName = PlayerPrefs.GetString("nickname", "nobody");
 
-        _highscore.text = _highscoreScore.ToString() + " by " + _hsName;
+        _highscore.SetText(_highscoreScore.ToString() + " by " + _hsName);
+
         HighscoreInput.SetActive(false);
     }
 
@@ -45,7 +48,7 @@ public class Highscore : MonoBehaviour
         {
             _currScore = _scoreCalculator.Score;
 
-            _highscore.text = (_currScore > _highscoreScore) ? (_currScore.ToString() + " by YOU") : (_highscoreScore.ToString() + " by " + _hsName);
+            _highscore.SetText((_currScore > _highscoreScore) ? (_currScore.ToString() + " by YOU") : (_highscoreScore.ToString() + " by " + _hsName));
 
             NewHighscore = (_currScore > _highscoreScore) ? true : false;
         }
